@@ -169,8 +169,16 @@ return {
       local servers = {
         ansiblels = {},
         gopls = {},
-        volar = {},
+        volar = {
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+          init_options = {
+            vue = {
+              hybridMode = false,
+            },
+          },
+        },
         pyright = {},
+        ts_ls = {},
         -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -189,8 +197,6 @@ return {
               completion = {
                 callSnippet = "Replace",
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -209,12 +215,12 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         "stylua", -- Lua
-        "markdownlint", -- Markdown
-        "prettier", -- HTML, CSS
-        "goimports", -- Golang
-        "ansiblels", -- Ansible
-        "pyright",
-        "volar",
+        "markdownlint", -- Markdown linter
+        "prettier", -- HTML, CSS linter
+        "goimports", -- Golang linter
+        "ansiblels", -- Ansible language server
+        "pyright", -- Python language server
+        "volar", -- vuejs language server
       })
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
