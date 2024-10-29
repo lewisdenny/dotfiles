@@ -47,6 +47,10 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 
 map("i", "jk", "<ESC>")
 
+vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
+vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true })
+vim.keymap.set("n", "dd", '"_dd', { noremap = true })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

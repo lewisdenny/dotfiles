@@ -1,4 +1,11 @@
 -- LSP Plugins
+vim.filetype.add {
+  extension = {
+    jinja = "jinja",
+    jinja2 = "jinja",
+    j2 = "jinja",
+  },
+}
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -167,7 +174,6 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        ansiblels = {},
         gopls = {},
         volar = {
           filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
@@ -179,6 +185,7 @@ return {
         },
         pyright = {},
         ts_ls = {},
+        jinja_lsp = {},
         -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -218,9 +225,11 @@ return {
         "markdownlint", -- Markdown linter
         "prettier", -- HTML, CSS linter
         "goimports", -- Golang linter
-        "ansiblels", -- Ansible language server
+        "yamllint",
         "pyright", -- Python language server
         "volar", -- vuejs language server
+        "yamlfmt",
+        "jinja_lsp",
       })
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 

@@ -36,6 +36,7 @@ return {
         css = { "prettier" },
         html = { "prettier" },
         go = { "goimports", "gofmt" },
+        -- yaml = { "yamlfmt"}
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
