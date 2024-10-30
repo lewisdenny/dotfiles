@@ -5,6 +5,7 @@ return {
     opts = {
       show_icons = true,
       leader_key = "<leader>m",
+      index_keys = "afjkl;hg",
     },
     -- stylua: ignore start
     keys = {
