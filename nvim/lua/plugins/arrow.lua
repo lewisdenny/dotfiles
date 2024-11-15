@@ -1,7 +1,7 @@
 return {
   {
     "otavioschwanck/arrow.nvim",
-    event = "VeryLazy",
+    lazy = true,
     opts = {
       show_icons = true,
       leader_key = "<leader>m",
@@ -18,11 +18,4 @@ return {
     end,
     -- stylua: ignore end
   },
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   optional = true,
-  --   opts = function(_, opts)
-  --     table.insert(opts.sections.lualine_c, require("arrow.statusline").text_for_statusline_with_icons())
-  --   end,
-  -- },
 }

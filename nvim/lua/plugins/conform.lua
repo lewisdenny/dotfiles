@@ -1,5 +1,7 @@
+--- See :help conform-formatters for a list of available formatters
+local skip_install = { gofmt = true }
 return {
-  { -- Autoformat
+  {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
@@ -15,10 +17,12 @@ return {
     },
     opts = {
       notify_on_error = false,
+      default_format_opts = {
+        lsp_format = "fallback",
+      },
       format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
+        -- NOTE: Disable "format_on_save lsp_fallback" for languages that don't
+        -- have a well standardized coding style.
         local disable_filetypes = { c = true, cpp = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
@@ -31,19 +35,26 @@ return {
           lsp_format = lsp_format_opt,
         }
       end,
-      formatters_by_ft = {
-        lua = { "stylua" },
-        css = { "prettier" },
-        html = { "prettier" },
-        go = { "goimports", "gofmt" },
-        -- yaml = { "yamlfmt"}
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
-      },
     },
+    config = function(_, opts)
+      local install_formatters = {}
+
+      for _, formatters in pairs(opts.formatters_by_ft) do
+        if type(formatters) == "table" then
+          for _, formatter in ipairs(formatters) do
+            if type(formatter) == "string" then
+              if not skip_install[formatter] then -- NOTE: Some formatters are installed externally
+                table.insert(install_formatters, formatter)
+              end
+            end
+          end
+        end
+      end
+
+      require("mason-tool-installer").setup { ensure_installed = install_formatters }
+      vim.cmd "MasonToolsInstall"
+
+      require("conform").setup(opts)
+    end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et

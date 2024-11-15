@@ -46,6 +46,7 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
 map("i", "jk", "<ESC>")
+map("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
 vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true })
