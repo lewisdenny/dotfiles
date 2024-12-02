@@ -7,13 +7,6 @@ return {
   event = "VeryLazy",
   keys = function(_, keys)
     local dap = require "dap"
-    -- configure nvim-dap-virtual-text
-    local ok, dapvt = pcall(require, "nvim-dap-virtual-text")
-    if ok and dapvt then
-      dapvt.setup {
-        virt_text_pos = "eol",
-      }
-    end
     return {
       { "<leader>db", dap.continue, desc = "Debug: Start/Continue" },
       { "<F1>", dap.step_into, desc = "Debug: Step Into" },

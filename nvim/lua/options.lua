@@ -66,5 +66,3 @@ vim.filetype.add {
     j2 = "jinja",
   },
 }
-
-vim.diagnostic.config { virtual_text = false }
