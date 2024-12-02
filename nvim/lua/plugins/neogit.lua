@@ -28,7 +28,6 @@ return {
       log_view = {
         kind = "floating",
       },
-
       -- Add custom gitlab server
       git_services = {
         ["github.com"] = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
