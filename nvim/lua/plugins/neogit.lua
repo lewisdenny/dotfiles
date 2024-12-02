@@ -9,6 +9,14 @@ return {
     keys = {
       { "<leader>gg", ":Neogit<CR>", desc = "NeoTree Open Neogit", silent = true },
     },
+    init = function()
+      local group = vim.api.nvim_create_augroup("MyCustomNeogitEvents", { clear = true })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "NeogitPushComplete",
+        group = group,
+        callback = require("neogit").close,
+      })
+    end,
     config = {
       -- Hides the hints at the top of the status buffer
       disable_hint = true,
