@@ -1,14 +1,35 @@
 return {
+  -- Install tools
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { "ansible-language-server" })
+    end,
+  },
+
+  -- configure lsp
   {
     "neovim/nvim-lspconfig",
-    event = "VeryLazy",
     opts = {
       servers = {
         ansiblels = {},
       },
     },
   },
+
+  -- Configure treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "yaml" })
+      end
+    end,
+  },
+
   { "mfussenegger/nvim-ansible", event = "VeryLazy" },
+  -- NOTE: Ansibug is not supported by Mason at this stage
   {
     "mfussenegger/nvim-dap",
     dependencies = {

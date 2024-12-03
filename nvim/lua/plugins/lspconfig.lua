@@ -3,23 +3,20 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", config = true },
-      { "j-hui/fidget.nvim", opts = {} },
+      "williamboman/mason.nvim",
+      "j-hui/fidget.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
       "hrsh7th/cmp-nvim-lsp",
     },
-    opts = function()
-      local ret = {
-        -- Note: See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        servers = {
-          pyright = {},
-          ts_ls = {},
-          jinja_lsp = {},
-        },
-      }
-      return ret
-    end,
+    opts = {
+      -- Note: See `:help lspconfig-all` for a list of all the pre-configured LSPs
+      servers = {
+        pyright = {},
+        ts_ls = {},
+        jinja_lsp = {},
+        ansiblels = {},
+      },
+    },
     config = function(_, opts)
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
@@ -108,8 +105,6 @@ return {
       --
       --  You can press `g?` for help in this menu.
       require("mason").setup()
-
-      require("mason-tool-installer").setup { ensure_installed = opts.servers }
 
       require("mason-lspconfig").setup {
         handlers = {

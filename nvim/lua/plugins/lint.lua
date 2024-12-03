@@ -20,8 +20,8 @@ return {
         table.insert(linters, value)
       end
 
-      require("mason-tool-installer").setup { ensure_installed = linters }
-      vim.cmd "MasonToolsInstall"
+      -- require("mason-tool-installer").setup { ensure_installed = linters }
+      -- vim.cmd "MasonToolsInstall"
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.

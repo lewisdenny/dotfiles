@@ -23,6 +23,9 @@ require("lazy").setup {
     { import = "plugins/lang" },
     { import = "plugins/debug" },
     { import = "plugins/themes" },
+    { import = "plugins/libs" },
+    { import = "plugins/ui" },
+    { import = "plugins/git" },
   },
   checker = { enabled = true },
   change_detection = {

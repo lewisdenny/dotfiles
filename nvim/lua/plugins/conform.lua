@@ -51,8 +51,9 @@ return {
         end
       end
 
-      require("mason-tool-installer").setup { ensure_installed = install_formatters }
-      vim.cmd "MasonToolsInstall"
+      -- vim.print(install_formatters)
+      -- require("mason-tool-installer").setup { ensure_installed = install_formatters }
+      -- vim.cmd "MasonToolsInstall"
 
       require("conform").setup(opts)
     end,
