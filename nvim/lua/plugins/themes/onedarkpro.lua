@@ -33,7 +33,7 @@ return {
         NvimTreeFolderName = { fg = "#abb2c0" },
         -- NvimTreeFileIcon = { fg = "#abb2c0" },
         -- NvimDapVirtualText overrides
-        NvimDapVirtualText = { italic = true },
+        -- NvimDapVirtualText = { italic = true },
       },
     },
     config = function(_, opts)

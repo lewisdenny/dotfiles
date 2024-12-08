@@ -8,7 +8,7 @@ return {
     end,
   },
 
-  -- configure lsp
+  -- Configure lsp
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -29,6 +29,7 @@ return {
   },
 
   { "mfussenegger/nvim-ansible", event = "VeryLazy" },
+
   -- NOTE: Ansibug is not supported by Mason at this stage
   {
     "mfussenegger/nvim-dap",

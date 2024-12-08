@@ -1,10 +1,9 @@
 return {
   "tamton-aquib/duck.nvim",
-    -- stylua: ignore start
+    -- stylua: ignore
     keys = {
       { "<leader>dh", function() require("duck").hatch() end, desc = "Duck Hatch"},
     },
-  -- stylua: ignore end
   config = function()
     vim.keymap.set("n", "<leader>dc", function()
       require("duck").cook()

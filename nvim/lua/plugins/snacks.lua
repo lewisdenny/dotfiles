@@ -13,6 +13,8 @@ return {
     -- stylua: ignore start
     keys = {
       { "<C-t>",function() Snacks.terminal.toggle() end, mode = { "n", "t" }, desc = "Toggle Terminal" },
+          { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+    { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     },
     -- stylua: ignore end
   },

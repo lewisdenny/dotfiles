@@ -13,8 +13,6 @@ return {
       servers = {
         pyright = {},
         ts_ls = {},
-        jinja_lsp = {},
-        ansiblels = {},
       },
     },
     config = function(_, opts)

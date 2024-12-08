@@ -1,5 +1,5 @@
 --- See :help conform-formatters for a list of available formatters
-local skip_install = { gofmt = true }
+-- local skip_install = { gofmt = true }
 return {
   {
     "stevearc/conform.nvim",
@@ -37,24 +37,6 @@ return {
       end,
     },
     config = function(_, opts)
-      local install_formatters = {}
-
-      for _, formatters in pairs(opts.formatters_by_ft) do
-        if type(formatters) == "table" then
-          for _, formatter in ipairs(formatters) do
-            if type(formatter) == "string" then
-              if not skip_install[formatter] then -- NOTE: Some formatters are installed externally
-                table.insert(install_formatters, formatter)
-              end
-            end
-          end
-        end
-      end
-
-      -- vim.print(install_formatters)
-      -- require("mason-tool-installer").setup { ensure_installed = install_formatters }
-      -- vim.cmd "MasonToolsInstall"
-
       require("conform").setup(opts)
     end,
   },

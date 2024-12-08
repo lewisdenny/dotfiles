@@ -4,7 +4,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "gopls", "goimports" })
+      vim.list_extend(opts.ensure_installed, { "gopls", "goimports", "delve" })
     end,
   },
 
@@ -12,16 +12,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      servers = {
-        gopls = {
-          settings = {
-            gopls = {
-              completeUnimported = true,
-              usePlaceholders = true,
-            },
-          },
-        },
-      },
+      servers = { gopls = { settings = { gopls = { completeUnimported = true, usePlaceholders = true } } } },
     },
   },
 
@@ -35,6 +26,18 @@ return {
     end,
   },
 
+  -- Configure formatting
+  {
+    "stevearc/conform.nvim",
+    event = "VeryLazy",
+    opts = {
+      formatters_by_ft = {
+        go = { "goimports", "gofmt" },
+      },
+    },
+  },
+
+  -- Configure language plugins
   {
     "ray-x/go.nvim",
     dependencies = {
@@ -49,35 +52,13 @@ return {
     end,
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
-    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+    build = ':lua require("go.install").update_all_sync()',
   },
-  {
-    "stevearc/conform.nvim",
-    event = "VeryLazy",
-    opts = {
-      formatters_by_ft = {
-        go = { "goimports", "gofmt" },
-      },
-    },
-  },
+
   {
     "leoluz/nvim-dap-go",
     config = function()
       require("dap-go").setup()
-    end,
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-    },
-    config = function()
-      require("mason-nvim-dap").setup {
-        automatic_installation = true,
-        ensure_installed = {
-          "delve",
-        },
-      }
     end,
   },
 }

@@ -27,7 +27,7 @@ require("lazy").setup {
     { import = "plugins/ui" },
     { import = "plugins/git" },
   },
-  checker = { enabled = true },
+  -- checker = { enabled = true },
   change_detection = {
     enabled = true,
     notify = false,

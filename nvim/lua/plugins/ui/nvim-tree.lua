@@ -1,10 +1,16 @@
-local width = 60
-local height = 60
+local width = 120
+local height = 40
+local gwidth = vim.api.nvim_list_uis()[1].width
+local gheight = vim.api.nvim_list_uis()[1].height
+
+-- recommended settings from nvim-tree documentation
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
 
 return {
   {
     "nvim-tree/nvim-tree.lua",
-    event = "VeryLazy",
+    lazy = false, -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Installation#lazy-loading
     init = function()
       vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "NvimTree | Explorer", silent = true })
     end,
@@ -20,8 +26,7 @@ return {
       sync_root_with_cwd = true,
       update_focused_file = {
         enable = true,
-        update_cwd = true,
-        ignore_list = {},
+        update_root = true, -- Update the root directory of the tree if the file is not under current root directory
       },
       actions = {
         open_file = {
@@ -29,57 +34,35 @@ return {
         },
       },
       git = {
-        enable = true,
-        ignore = true,
-        show_on_dirs = true,
-        show_on_open_dirs = true,
         timeout = 5000,
       },
       view = {
-        cursorline = true,
         float = {
-          enable = false,
+          enable = false, -- Can't get it to look nice :/
           quit_on_focus_loss = true,
           open_win_config = {
-            relative = "editor",
             width = width,
             height = height,
-            border = "rounded",
+            row = (gheight - height) * 0.4,
+            col = (gwidth - width) * 0.5,
           },
         },
       },
       renderer = {
-        highlight_git = false,
         -- root_folder_label = false,
-        root_folder_label = ":~:s?$?",
+        indent_markers = {
+          enable = true,
+        },
         icons = {
-          show = {
-            file = true,
-            folder = true,
-            folder_arrow = true,
-            git = true,
-          },
           glyphs = {
             default = "󰈚",
-            symlink = "",
             folder = {
-              default = "",
-              empty = "",
               empty_open = "",
               open = "",
-              symlink = "",
-              symlink_open = "",
-              arrow_open = "",
-              arrow_closed = "",
             },
             git = {
               unstaged = "",
-              staged = "✓",
-              unmerged = "",
-              renamed = "➜",
               untracked = "U",
-              deleted = "",
-              ignored = "◌",
             },
           },
         },
