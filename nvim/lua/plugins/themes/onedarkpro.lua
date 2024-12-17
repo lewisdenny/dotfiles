@@ -34,6 +34,14 @@ return {
         -- NvimTreeFileIcon = { fg = "#abb2c0" },
         -- NvimDapVirtualText overrides
         -- NvimDapVirtualText = { italic = true },
+        RainbowWhite = { fg = "${white}" },
+        RainbowViolet = { fg = "${purple}" },
+        RainbowBlue = { fg = "${blue}" },
+        RainbowGreen = { fg = "${green}" },
+        RainbowYellow = { fg = "${yellow}" },
+        RainbowOrange = { fg = "${orange}" },
+        RainbowRed = { fg = "${red}" },
+        RainbowCyan = { fg = "${cyan}" },
       },
     },
     config = function(_, opts)

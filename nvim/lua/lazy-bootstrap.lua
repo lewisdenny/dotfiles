@@ -27,7 +27,11 @@ require("lazy").setup {
     { import = "plugins/ui" },
     { import = "plugins/git" },
   },
-  -- checker = { enabled = true },
+  checker = {
+    -- automatically check for plugin updates
+    enabled = true,
+    notify = false, -- Disabled as count is shown in Lualine
+  },
   change_detection = {
     enabled = true,
     notify = false,

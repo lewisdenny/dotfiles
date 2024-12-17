@@ -1,3 +1,16 @@
+-- Set shell settings
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.sh" },
+  callback = function()
+    local o = vim.o
+
+    o.expandtab = true
+    o.smartindent = true
+    o.tabstop = 2
+    o.shiftwidth = 2
+  end,
+})
+
 return {
   -- Install tools
   {

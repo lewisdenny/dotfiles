@@ -30,7 +30,7 @@ return {
 
   { "mfussenegger/nvim-ansible", event = "VeryLazy" },
 
-  -- NOTE: Ansibug is not supported by Mason at this stage
+  -- NOTE: Ansibug is not supported by Mason yet
   {
     "mfussenegger/nvim-dap",
     dependencies = {

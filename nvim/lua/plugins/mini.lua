@@ -12,6 +12,7 @@ return {
       })
     end,
   },
+
   {
     -- Examples:
     --  - va)  - [V]isually select [A]round [)]paren
@@ -23,6 +24,7 @@ return {
       require("mini.ai").setup { n_lines = 500 }
     end,
   },
+
   {
     -- Examples:
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
@@ -33,5 +35,20 @@ return {
     config = function()
       require("mini.surround").setup { n_lines = 500 }
     end,
+  },
+
+  -- Neovim Lua plugin to move any selection in any direction. Part of 'mini.nvim' library.
+  -- https://github.com/echasnovski/mini.move
+  {
+    "echasnovski/mini.move",
+    opts = {
+      mappings = {
+        -- Move visual selection in Visual mode. ctl + hjkl.
+        up = "K",
+        down = "J",
+        left = "H",
+        right = "L",
+      },
+    },
   },
 }

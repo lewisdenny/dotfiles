@@ -23,10 +23,10 @@ return {
       "NvimTreeFindFileToggle",
     },
     opts = {
-      sync_root_with_cwd = true,
+      sync_root_with_cwd = false,
       update_focused_file = {
         enable = true,
-        update_root = true, -- Update the root directory of the tree if the file is not under current root directory
+        update_root = false, -- Update the root directory of the tree if the file is not under current root directory
       },
       actions = {
         open_file = {
@@ -37,6 +37,7 @@ return {
         timeout = 5000,
       },
       view = {
+        adaptive_size = true,
         float = {
           enable = false, -- Can't get it to look nice :/
           quit_on_focus_loss = true,

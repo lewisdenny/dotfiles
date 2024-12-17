@@ -5,11 +5,11 @@ return {
     "mfussenegger/nvim-dap",
     "nvim-neotest/nvim-nio",
   },
-  event = "VeryLazy",
+  -- event = "VeryLazy",
   keys = function(_, keys)
     local dapui = require "dapui"
     return {
-      { "<F7>", dapui.toggle, desc = "Debug: See last session result." },
+      { "<leader>dt", dapui.toggle, desc = "Debug: Toggle DAP UI" },
       unpack(keys),
     }
   end,

@@ -18,7 +18,7 @@ return {
         function()
           dap.set_breakpoint(vim.fn.input "Breakpoint condition: ")
         end,
-        desc = "Debug: Set Breakpoint",
+        desc = "Debug: Set Breakpoint condition",
       },
       unpack(keys),
     }

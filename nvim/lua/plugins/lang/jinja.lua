@@ -1,3 +1,10 @@
+-- Add Jinja filetype
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.jinja", "*.jinja2", "" },
+  command = "set filetype=jinja",
+})
+
+-- Lazy config
 return {
   -- Install tools
   {

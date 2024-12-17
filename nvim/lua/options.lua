@@ -58,11 +58,9 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- Add jinja file type
-vim.filetype.add {
-  extension = {
-    jinja = "jinja",
-    jinja2 = "jinja",
-    j2 = "jinja",
-  },
-}
+-- Program to use for the :grep command
+vim.opt.grepprg = "rg --vimgrep"
+
+-- Minimal number of columns for the line number
+-- Default: 4
+vim.opt.numberwidth = 2
