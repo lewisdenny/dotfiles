@@ -4,10 +4,10 @@ return {
     event = "VeryLazy",
     opts = {
       messages = {
-        enabled = false,
+        enabled = true,
       },
       notify = {
-        enabled = false,
+        enabled = true,
       },
     },
     dependencies = {

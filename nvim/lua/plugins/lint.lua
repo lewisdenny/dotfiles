@@ -2,18 +2,13 @@ return {
   {
     "mfussenegger/nvim-lint",
     lazy = true,
-    -- event = "VeryLazy",
+    event = "VeryLazy",
     opts = {
       linters_by_ft = {},
     },
+    -- stylua: ignore
     keys = {
-      {
-        "<leader>l",
-        function()
-          require("lint").try_lint()
-        end,
-        desc = "[L]int file",
-      },
+      { "<leader>l", function() require("lint").try_lint() end, desc = "[L]int file" },
     },
     config = function(_, opts)
       vim.print(opts)
