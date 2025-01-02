@@ -71,7 +71,8 @@ return {
 
       -- Add nvim-cmp, luasnip capabilities to Neovim
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
 
       -- Enable the following language servers
       require("mason").setup()
@@ -80,6 +81,7 @@ return {
         handlers = {
           function(server_name)
             local server = opts.servers[server_name] or {}
+            -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
             require("lspconfig")[server_name].setup(server)
           end,
@@ -88,4 +90,3 @@ return {
     end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et

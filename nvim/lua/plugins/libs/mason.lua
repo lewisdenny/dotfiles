@@ -1,9 +1,9 @@
 return {
   {
     "williamboman/mason.nvim",
-    -- cmd = "Mason",
+    cmd = "Mason",
     -- keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
-    -- build = ":MasonUpdate",
+    build = ":MasonUpdate",
     -- opts = {
     --   ensure_installed = {
     --     "html-lsp",

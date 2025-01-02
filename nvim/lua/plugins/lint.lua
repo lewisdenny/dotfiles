@@ -11,7 +11,7 @@ return {
       { "<leader>l", function() require("lint").try_lint() end, desc = "[L]int file" },
     },
     config = function(_, opts)
-      vim.print(opts)
+      -- vim.print(opts)
       local lint = require "lint"
       lint.linters_by_ft = opts.linters_by_ft
 

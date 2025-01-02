@@ -6,6 +6,7 @@ return {
     vim.keymap.set("n", "<leader>sl", "<cmd>SessionManager load_session<CR>", { desc = "[S]earch Session manager [L]oad" })
     require("session_manager").setup {
       autoload_mode = { config.AutoloadMode.GitSession, config.AutoloadMode.CurrentDir, config.AutoloadMode.Disabled },
+      autosave_ignore_dirs = { "/", "~", "/tmp/" },
       autosave_ignore_filetypes = {
         "checkhealth",
         "help",

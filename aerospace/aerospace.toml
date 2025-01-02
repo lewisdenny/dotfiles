@@ -144,3 +144,10 @@ run = 'move-node-to-workspace C'
 if.app-id = 'com.tinyspeck.slackmacgap'
 check-further-callbacks = true
 run = 'move-node-to-workspace C'
+
+# https://ghostty.org/docs/help/macos-tiling-wms#aerospace
+[[on-window-detected]]
+if.app-id="com.mitchellh.ghostty"
+run= [
+  "layout tiling",
+]
