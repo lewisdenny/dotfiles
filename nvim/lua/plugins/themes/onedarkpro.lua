@@ -23,17 +23,17 @@ return {
           color_column = "#ffffff",
         },
       },
+      --Override highlight options for plugins
       highlights = {
-        --Override highlight options for plugins
-        -- NvimTreeFolderName = { fg = "${blue}" },
+        RenderMarkdownChecked = { bg = "#282c34", fg = "#98c379" },
+        CustomCybuFocus = { fg = "#ffee72" },
+        CustomCybuBackground = { bg = "#282c34" },
+        CustomCybuBorder = { bg = "#282c34" },
         NvimTreeOpenedFolderName = { fg = "#ffee72" },
         NvimTreeFolderIcon = { fg = "#abb2c0" },
         NvimTreeRootFolder = { fg = "#ffee72" },
         NvimTreeGitDirtyIcon = { fg = "#ffee72" },
         NvimTreeFolderName = { fg = "#abb2c0" },
-        -- NvimTreeFileIcon = { fg = "#abb2c0" },
-        -- NvimDapVirtualText overrides
-        -- NvimDapVirtualText = { italic = true },
         RainbowWhite = { fg = "${white}" },
         RainbowViolet = { fg = "${purple}" },
         RainbowBlue = { fg = "${blue}" },

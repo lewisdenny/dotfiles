@@ -15,8 +15,5 @@ return {
   },
   config = function(_, opts)
     require("arrow").setup(opts)
-    vim.keymap.set("n", "<S-Tab>", require("arrow.persist").previous)
-    vim.keymap.set("n", "<TAB>", require("arrow.persist").next)
-    vim.keymap.set("n", "<C-s>", require("arrow.persist").toggle)
   end,
 }

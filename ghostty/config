@@ -1,0 +1,13 @@
+font-family = Fira Code Mono
+#font-style = bold
+font-family-italic = Maple Mono NF
+font-family-bold-italic = Maple Mono NF
+font-size = 14
+font-thicken = true
+
+cursor-style-blink = false
+
+macos-option-as-alt = true
+copy-on-select = false
+
+theme = catppuccin-frappe

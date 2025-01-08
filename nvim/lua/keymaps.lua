@@ -61,3 +61,5 @@ vim.api.nvim_create_user_command("Redir", function(ctx)
   vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
   vim.opt_local.modified = false
 end, { nargs = "+", complete = "command" })
+
+vim.keymap.set("n", "<leader>cla", ":w <bar> %bd <bar> e# <bar> bd# <CR>", { desc = "Close all other buffers except current one" })

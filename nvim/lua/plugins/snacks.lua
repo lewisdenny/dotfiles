@@ -21,6 +21,7 @@ return {
       { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
       { "<leader>gB", function() Snacks.gitbrowse() end, mode = { "n", "v" }, desc = "Git Browse" },
       { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
+      { "<leader>sD", function() Snacks.dashboard() end, desc = "Open Snack Dashboard" },
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {
