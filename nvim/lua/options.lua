@@ -64,3 +64,6 @@ vim.opt.grepprg = "rg --vimgrep"
 -- Minimal number of columns for the line number
 -- Default: 4
 vim.opt.numberwidth = 2
+
+-- Set spell region
+vim.opt.spelllang = "en_au"

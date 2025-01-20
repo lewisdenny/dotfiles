@@ -7,7 +7,7 @@ return {
         enabled = true,
       },
       notify = {
-        enabled = true,
+        enabled = false,
       },
     },
     dependencies = {

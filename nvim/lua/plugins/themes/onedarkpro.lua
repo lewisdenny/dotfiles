@@ -1,11 +1,17 @@
--- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 -- https://github.com/olimorris/onedarkpro.nvim
+
+local ikea_yellow = "#ffd800" -- Thanks Ikea
+
 return {
   {
     "olimorris/onedarkpro.nvim",
     -- enabled = false,
     priority = 1000, -- Make sure to load this before all the other start plugins.
     opts = {
+      filetypes = {
+        markdown = false,
+      },
+
       styles = {
         tags = "italic",
         methods = "bold",
@@ -16,23 +22,26 @@ return {
         conditionals = "italic",
         virtual_text = "italic",
         NvimDapVirtualText = "italic",
+        DiagnosticHint = "italic",
       },
+
       colors = {
         onedark = {
           cursorline = "#ffffff",
           color_column = "#ffffff",
         },
       },
+
       --Override highlight options for plugins
       highlights = {
         RenderMarkdownChecked = { bg = "#282c34", fg = "#98c379" },
-        CustomCybuFocus = { fg = "#ffee72" },
+        CustomCybuFocus = { fg = ikea_yellow },
         CustomCybuBackground = { bg = "#282c34" },
         CustomCybuBorder = { bg = "#282c34" },
-        NvimTreeOpenedFolderName = { fg = "#ffee72" },
+        NvimTreeOpenedFolderName = { fg = ikea_yellow },
         NvimTreeFolderIcon = { fg = "#abb2c0" },
-        NvimTreeRootFolder = { fg = "#ffee72" },
-        NvimTreeGitDirtyIcon = { fg = "#ffee72" },
+        NvimTreeRootFolder = { fg = ikea_yellow },
+        NvimTreeGitDirtyIcon = { fg = ikea_yellow },
         NvimTreeFolderName = { fg = "#abb2c0" },
         RainbowWhite = { fg = "${white}" },
         RainbowViolet = { fg = "${purple}" },
@@ -42,6 +51,7 @@ return {
         RainbowOrange = { fg = "${orange}" },
         RainbowRed = { fg = "${red}" },
         RainbowCyan = { fg = "${cyan}" },
+        DiagnosticHint = { italic = true, bold = true },
       },
     },
     config = function(_, opts)
@@ -50,7 +60,7 @@ return {
 
       -- Set lueline
       local custom_onedark = require "lualine.themes.onedark"
-      custom_onedark.normal.a.bg = "#ffee72"
+      custom_onedark.normal.a.bg = ikea_yellow
       require("lualine").setup {
         options = { theme = custom_onedark },
       }

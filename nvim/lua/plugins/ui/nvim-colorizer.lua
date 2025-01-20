@@ -7,8 +7,14 @@
 return {
   {
     "catgoose/nvim-colorizer.lua",
-    event = "BufReadPre",
+    event = "VeryLazy",
     opts = {
+      lazy_load = true,
+      filetypes = {
+        "*", -- Highlight all files, but customize some others.
+        "!lazy", -- Exclude vim from highlighting.
+        -- Exclusion Only makes sense if '*' is specified first!
+      },
       user_default_options = {
         mode = "virtualtext",
         names = false, -- "Name" codes like Blue or red.

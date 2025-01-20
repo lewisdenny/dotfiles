@@ -62,6 +62,19 @@ return {
     end,
   },
 
+  { -- show golang implements
+    "maxandron/goplements.nvim",
+    ft = "go",
+    opts = {
+      prefix = {
+        interface = "implemented by: ",
+        struct = "implements: ",
+      },
+      display_package = true,
+      highlight = "Goplements",
+    },
+  },
+
   {
     "nvim-neotest/neotest",
     dependencies = {

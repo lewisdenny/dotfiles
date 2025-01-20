@@ -68,6 +68,7 @@ return {
   -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-pairs.md
   {
     "echasnovski/mini.pairs",
+    enabled = false,
     version = "*",
     event = { "BufReadPre", "BufNewFile" },
     config = true, -- NOTE: Doesn't work without.

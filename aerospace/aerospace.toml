@@ -130,6 +130,7 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+#  aerospace list-apps
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
 check-further-callbacks = true
@@ -145,9 +146,23 @@ if.app-id = 'com.tinyspeck.slackmacgap'
 check-further-callbacks = true
 run = 'move-node-to-workspace C'
 
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+check-further-callbacks = true
+run = 'layout floating'
+
 # https://ghostty.org/docs/help/macos-tiling-wms#aerospace
 [[on-window-detected]]
 if.app-id="com.mitchellh.ghostty"
-run= [
-  "layout tiling",
-]
+run= "layout tiling"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+check-further-callbacks = true
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+check-further-callbacks = true
+run = 'layout floating'
+

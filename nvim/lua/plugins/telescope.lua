@@ -11,15 +11,19 @@ return {
       { "nvim-tree/nvim-web-devicons" },
     },
     config = function()
+      local open_with_trouble = require("trouble.sources.telescope").open
+
       require("telescope").setup {
         defaults = {
           mappings = {
             n = {
               ["jk"] = require("telescope.actions").close,
+              ["<c-t>"] = open_with_trouble,
             },
             i = {
               ["jk"] = require("telescope.actions").close,
               ["qq"] = require("telescope.actions").close,
+              ["<c-t>"] = open_with_trouble,
             },
           },
           extensions = {
