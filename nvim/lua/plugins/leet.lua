@@ -8,7 +8,12 @@ return {
       "MunifTanjim/nui.nvim",
     },
     opts = {
-      -- configuration goes here
+      lang = "golang",
+      injector = {
+        ["golang"] = {
+          before = "package main",
+        },
+      },
     },
   },
 }

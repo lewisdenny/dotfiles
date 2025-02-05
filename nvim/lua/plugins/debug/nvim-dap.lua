@@ -3,6 +3,7 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "theHamsta/nvim-dap-virtual-text",
+    { "igorlfs/nvim-dap-view", opts = { default_section = "REPL" } },
   },
   event = "VeryLazy",
   keys = function(_, keys)
@@ -19,6 +20,21 @@ return {
           dap.set_breakpoint(vim.fn.input "Breakpoint condition: ")
         end,
         desc = "Debug: Set Breakpoint condition",
+      },
+      {
+        "<leader>dd",
+        function()
+          local widgets = require "dap.ui.widgets"
+          widgets.centered_float(widgets.scopes, { border = "rounded" })
+        end,
+        desc = "Show DAP Scopes",
+      },
+      {
+        "<leader>dv",
+        function()
+          require("dap-view").toggle()
+        end,
+        desc = "Toggle nvim-dap-view",
       },
       unpack(keys),
     }

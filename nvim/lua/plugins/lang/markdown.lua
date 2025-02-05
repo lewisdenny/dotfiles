@@ -46,6 +46,7 @@ return {
   -- https://github.com/MeanderingProgrammer/render-markdown.nvim
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    -- commit = "c85d682dce1ef3453868b91672bb2e65d0d95c68",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
