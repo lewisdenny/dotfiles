@@ -18,6 +18,16 @@ return {
     },
   },
 
+  -- Configure formatting
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        yaml = { "prettier" },
+      },
+    },
+  },
+
   -- Configure treesitter
   {
     "nvim-treesitter/nvim-treesitter",

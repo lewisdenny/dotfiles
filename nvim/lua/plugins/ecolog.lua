@@ -9,6 +9,8 @@ return {
     },
     lazy = false, -- Lazy loading is done internally
     opts = {
+      load_shell = true,
+      override = false, -- false means shell vars don't override .env vars
       vim_env = "true",
       integrations = {
         blink_cmp = true,

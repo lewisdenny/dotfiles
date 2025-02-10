@@ -3,7 +3,7 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "theHamsta/nvim-dap-virtual-text",
-    { "igorlfs/nvim-dap-view", opts = { default_section = "REPL" } },
+    { "igorlfs/nvim-dap-view", opts = { winbar = { default_section = "repl" } } },
   },
   event = "VeryLazy",
   keys = function(_, keys)
