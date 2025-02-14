@@ -2,34 +2,34 @@
 return {
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
-    lazy = true,
-    ft = { "gitcommit", "diff" },
-    init = function()
-      -- load gitsigns only when a git file is opened
-      vim.api.nvim_create_autocmd({ "BufRead" }, {
-        group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
-        callback = function()
-          vim.fn.jobstart({ "git", "-C", vim.loop.cwd(), "rev-parse" }, {
-            on_exit = function(_, return_code)
-              if return_code == 0 then
-                vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
-                vim.schedule(function()
-                  require("lazy").load { plugins = { "gitsigns.nvim" } }
-                end)
-              end
-            end,
-          })
-        end,
-      })
-    end,
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    -- ft = { "gitcommit", "diff" },
+    -- init = function()
+    --   -- load gitsigns only when a git file is opened
+    --   vim.api.nvim_create_autocmd({ "BufRead" }, {
+    --     group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
+    --     callback = function()
+    --       vim.fn.jobstart({ "git", "-C", vim.loop.cwd(), "rev-parse" }, {
+    --         on_exit = function(_, return_code)
+    --           if return_code == 0 then
+    --             vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
+    --             vim.schedule(function()
+    --               require("lazy").load { plugins = { "gitsigns.nvim" } }
+    --             end)
+    --           end
+    --         end,
+    --       })
+    --     end,
+    --   })
+    -- end,
     opts = {
-      signs = {
-        add = { text = "+" },
-        change = { text = "~" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-      },
+      -- signs = {
+      --   add = { text = "+" },
+      --   change = { text = "~" },
+      --   delete = { text = "_" },
+      --   topdelete = { text = "‾" },
+      --   changedelete = { text = "~" },
+      -- },
       on_attach = function(bufnr)
         local gitsigns = require "gitsigns"
 
@@ -68,19 +68,18 @@ return {
         map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "git [s]tage hunk" })
         map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "git [r]eset hunk" })
         map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "git [S]tage buffer" })
-        map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "git [u]ndo stage hunk" })
         map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "git [R]eset buffer" })
         map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "git [p]review hunk" })
         map("n", "<leader>hb", gitsigns.blame_line, { desc = "git [b]lame line" })
         map("n", "<leader>hd", gitsigns.diffthis, { desc = "git [d]iff against index" })
+
         map("n", "<leader>hD", function()
           gitsigns.diffthis "@"
         end, { desc = "git [D]iff against last commit" })
+
         -- Toggles
         map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "[T]oggle git show [b]lame line" })
-        map("n", "<leader>tD", gitsigns.toggle_deleted, { desc = "[T]oggle git show [D]eleted" })
       end,
     },
   },
 }
--- vim: ts=2 sts=2 sw=2 et

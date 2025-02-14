@@ -7,7 +7,7 @@ return {
     show_icons = true,
     leader_key = "<leader>m",
     index_keys = "afjkl;hg",
-    save_key = "git_root", -- `git_root_bare` is another option if `git_root` doesn't work.
+    save_key = "git_root", -- NOTE: `git_root_bare` is another option if `git_root` doesn't work.
   },
   -- stylua: ignore
   keys = {

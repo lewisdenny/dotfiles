@@ -1,3 +1,5 @@
+-- A simple wrapper around :mksession
+-- https://github.com/Shatur/neovim-session-manager
 return {
   "Shatur/neovim-session-manager",
   dependencies = "nvim-lua/plenary.nvim",

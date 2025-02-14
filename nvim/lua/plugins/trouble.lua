@@ -1,6 +1,7 @@
 return {
   {
     "folke/trouble.nvim",
+    version = "*",
     opts = {
       focus = true,
       modes = {

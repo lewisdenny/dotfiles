@@ -1,14 +1,19 @@
----@diagnostic disable: missing-fields
 return {
   {
     "saghen/blink.cmp",
+    lazy = false, -- lazy loading handled internally
     -- enabled = false,
-    version = "v0.*",
+    version = "*",
+    opts_extend = {
+      "sources.completion.enabled_providers",
+      "sources.compat",
+      "sources.default",
+    },
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
         "L3MON4D3/LuaSnip",
-        version = "v2.*",
+        version = "*",
         dependencies = {
           {
             "rafamadriz/friendly-snippets",
@@ -20,40 +25,20 @@ return {
       },
     },
     opts = {
-      -- 'default' for mappings similar to built-in completion
-      -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-      -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-      -- see the "default configuration" section below for full documentation on how to define
-      -- your own keymap.
       keymap = { preset = "super-tab" },
-
       appearance = {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
       },
-
       snippets = { preset = "luasnip" },
-      -- snippets = {
-      --   expand = function(snippet)
-      --     require("luasnip").lsp_expand(snippet)
-      --   end,
-      --   active = function(filter)
-      --     if filter and filter.direction then
-      --       return require("luasnip").jumpable(filter.direction)
-      --     end
-      --     return require("luasnip").in_snippet()
-      --   end,
-      --   jump = function(direction)
-      --     require("luasnip").jump(direction)
-      --   end,
-      -- },
-
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
       },
-
       signature = { enabled = true },
+      completion = {
+        -- Show documentation when selecting a completion item
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      },
     },
-    opts_extend = { "sources.default" },
   },
 }

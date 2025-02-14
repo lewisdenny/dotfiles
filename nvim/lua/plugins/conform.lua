@@ -1,8 +1,8 @@
 --- See :help conform-formatters for a list of available formatters
--- local skip_install = { gofmt = true }
 return {
   {
     "stevearc/conform.nvim",
+    version = "*",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {

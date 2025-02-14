@@ -8,6 +8,9 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
+      default_args = {
+        DiffviewOpen = { "--imply-local" }, -- https://github.com/sindrets/diffview.nvim/blob/main/USAGE.md#review-a-pr
+      },
       view = {
         merge_tool = {
           layout = "diff4_mixed",

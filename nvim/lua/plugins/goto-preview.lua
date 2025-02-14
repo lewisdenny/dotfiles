@@ -1,3 +1,5 @@
+-- A small Neovim plugin for previewing definitions using floating windows.
+-- https://github.com/rmagatti/goto-preview
 return {
   {
     "rmagatti/goto-preview",

@@ -2,44 +2,44 @@ return {
   -- Install tools
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "gopls", "goimports", "delve" })
-    end,
+    opts = { ensure_installed = { "golangci-lint" } },
   },
 
-  -- configure lsp
+  -- Configure lsp
   {
     "neovim/nvim-lspconfig",
     opts = {
-      servers = { gopls = { settings = { gopls = { completeUnimported = true, usePlaceholders = true } } } },
+      servers = {
+        gopls = { settings = { gopls = {
+          completeUnimported = true,
+          usePlaceholders = true,
+        } } },
+      },
     },
   },
 
   -- Configure treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "go", "gomod", "gosum", "gotmpl", "gowork" })
-      end
-    end,
+    opts = { ensure_installed = { "go", "gomod", "gosum", "gotmpl", "gowork" } },
+  },
+
+  -- Configure linter
+  {
+    "mfussenegger/nvim-lint",
+    opts = { linters_by_ft = { go = { "golangcilint" } } },
   },
 
   -- Configure formatting
   {
     "stevearc/conform.nvim",
-    event = "VeryLazy",
-    opts = {
-      formatters_by_ft = {
-        go = { "goimports", "gofmt" },
-      },
-    },
+    opts = { formatters_by_ft = { go = { "goimports", "gofmt" } } },
   },
 
   -- Configure language plugins
   {
     "ray-x/go.nvim",
+    enabled = false,
     dependencies = {
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
@@ -47,7 +47,7 @@ return {
     },
     config = function()
       require("go").setup {
-        lsp_inlay_hints = { enable = false }, -- Handled by tiny-inline.nvim
+        -- lsp_inlay_hints = { enable = false }, -- Handled by tiny-inline.nvim
       }
     end,
     event = { "CmdlineEnter" },

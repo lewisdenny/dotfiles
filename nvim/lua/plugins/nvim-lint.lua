@@ -1,3 +1,5 @@
+-- An asynchronous linter plugin for Neovim complementary to the built-in Language Server Protocol support.
+-- https://github.com/mfussenegger/nvim-lint
 return {
   {
     "mfussenegger/nvim-lint",
@@ -24,6 +26,7 @@ return {
           lint.try_lint()
         end,
       })
+
       -- Show linters for the current buffer's file type
       vim.api.nvim_create_user_command("LintInfo", function()
         local filetype = vim.bo.filetype

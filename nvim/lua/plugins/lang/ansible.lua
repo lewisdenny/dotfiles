@@ -2,30 +2,22 @@ return {
   -- Install tools
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "ansible-language-server" })
-    end,
+    opts = { ensure_installed = { "ansible-language-server" } },
   },
 
   -- Configure lsp
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        ansiblels = {},
-      },
-    },
+    opts = { servers = { ansiblels = {} } },
   },
+
+  -- Configure linter
+  -- NOTE: Linting is handled by ansiblels
 
   -- Configure treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "yaml" })
-      end
-    end,
+    opts = { ensure_installed = { "yaml" } },
   },
 
   { "mfussenegger/nvim-ansible", event = "VeryLazy" },

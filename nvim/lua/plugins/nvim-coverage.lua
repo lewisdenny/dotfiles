@@ -1,5 +1,5 @@
 -- https://github.com/andythigpen/nvim-coverage
--- Nice, need and autocommand to run :Coverage if a coverage file is found
+-- Nice, need an autocommand to run :Coverage if a coverage file is found
 return {
   {
     "andythigpen/nvim-coverage",

@@ -1,6 +1,9 @@
+-- A Neovim plugin enabling you to solve LeetCode problems.
+-- https://github.com/kawre/leetcode.nvim
 return {
   {
     "kawre/leetcode.nvim",
+    version = "*",
     cmd = "Leet",
     dependencies = {
       "nvim-telescope/telescope.nvim",

@@ -1,6 +1,9 @@
+-- A collection of QoL plugins for Neovim
+-- https://github.com/folke/snacks.nvim
 return {
   {
     "folke/snacks.nvim",
+    version = "*",
     priority = 1000,
     lazy = false,
     opts = {

@@ -2,40 +2,31 @@ return {
   -- Install tools
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "markdownlint-cli2", "marksman", "prettier" })
-    end,
+    opts = { ensure_installed = { "markdownlint-cli2", "marksman", "prettier" } },
   },
 
   -- Configure linter
   {
     "mfussenegger/nvim-lint",
-    opts = {
-      linters_by_ft = {
-        markdown = { "markdownlint-cli2" },
-      },
-    },
+    opts = { linters_by_ft = { markdown = { "markdownlint-cli2" } } },
+  },
+
+  -- Configure treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "markdown", "markdown_inline" } },
   },
 
   -- Configure lsp
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        marksman = {},
-      },
-    },
+    opts = { servers = { marksman = {} } },
   },
 
   -- Configure formatting
   {
     "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        markdown = { "prettier" },
-      },
-    },
+    opts = { formatters_by_ft = { markdown = { "prettier" } } },
   },
 
   -- https://github.com/bullets-vim/bullets.vim

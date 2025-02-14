@@ -2,6 +2,7 @@
 return {
   {
     "folke/which-key.nvim",
+    version = "*",
     event = "VimEnter",
     opts = {
       spec = {

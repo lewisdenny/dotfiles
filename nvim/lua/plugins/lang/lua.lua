@@ -2,10 +2,7 @@ return {
   -- Install tools
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "lua-language-server", "stylua" })
-    end,
+    opts = { ensure_installed = { "lua-language-server", "stylua" } },
   },
 
   -- Configure lsp
@@ -56,21 +53,13 @@ return {
   -- Configure formatting
   {
     "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        lua = { "stylua" },
-      },
-    },
+    opts = { formatters_by_ft = { lua = { "stylua" } } },
   },
 
   -- Configure treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "lua" })
-      end
-    end,
+    opts = { ensure_installed = { "lua", "luadoc" } },
   },
 
   {
@@ -88,7 +77,7 @@ return {
     opts = {
       sources = {
         -- add lazydev to your completion providers
-        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        default = { "lazydev" },
         providers = {
           lazydev = {
             name = "LazyDev",

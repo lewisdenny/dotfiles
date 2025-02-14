@@ -2,23 +2,18 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    version = "*",
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",
+    opts_extend = {
+      "ensure_installed",
+    },
     opts = {
       ensure_installed = {
-        "bash",
-        "c",
         "diff",
-        "html",
-        "lua",
-        "luadoc",
-        "markdown",
-        "markdown_inline",
         "query",
         "vim",
         "vimdoc",
-        "typescript",
-        "javascript",
       },
       auto_install = true,
       highlight = {

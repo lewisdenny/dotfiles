@@ -1,3 +1,4 @@
+-- https://github.com/philosofonusus/ecolog.nvim
 return {
   {
     "philosofonusus/ecolog.nvim",

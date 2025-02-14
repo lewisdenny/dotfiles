@@ -1,5 +1,5 @@
+-- Cycle buffers with a customizable notification window
 return {
-  -- Cycle buffers with a customizable notification window
   {
     "ghillb/cybu.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },

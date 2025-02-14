@@ -2,10 +2,7 @@ return {
   -- Install tools
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "ruff", "python-lsp-server" })
-    end,
+    opts = { ensure_installed = { "ruff", "python-lsp-server" } },
   },
 
   -- Configure lsp
@@ -39,22 +36,15 @@ return {
   -- Configure treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "python" })
-      end
-    end,
+    opts = { ensure_installed = { "python" } },
   },
 
   -- Configure formatting
   {
     "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        python = { "ruff_fix", "ruff_format" },
-      },
-    },
+    opts = { formatters_by_ft = { python = { "ruff_fix", "ruff_format" } } },
   },
+
   {
     "mfussenegger/nvim-dap",
     dependencies = {
