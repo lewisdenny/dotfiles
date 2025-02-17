@@ -1,6 +1,6 @@
 return {
   {
-    "NeogitOrg/neogit",
+    "https://github.com/NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",
@@ -9,14 +9,15 @@ return {
     keys = {
       { "<leader>gg", ":Neogit<CR>", desc = "NeoTree Open Neogit", silent = true },
     },
-    init = function()
-      local group = vim.api.nvim_create_augroup("MyCustomNeogitEvents", { clear = true })
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "NeogitPushComplete",
-        group = group,
-        callback = require("neogit").close,
-      })
-    end,
+    -- trying auto_close_console
+    -- init = function()
+    --   local group = vim.api.nvim_create_augroup("MyCustomNeogitEvents", { clear = true })
+    --   vim.api.nvim_create_autocmd("User", {
+    --     pattern = "NeogitPushComplete",
+    --     group = group,
+    --     callback = require("neogit").close,
+    --   })
+    -- end,
     config = {
       -- Hides the hints at the top of the status buffer
       disable_hint = true,
@@ -25,9 +26,13 @@ return {
       commit_editor = {
         kind = "floating",
       },
+      -- Show message with spinning animation when a git command is running.
+      process_spinner = true,
       log_view = {
         kind = "floating",
       },
+      -- Automatically close the console if the process exits with a 0 (success) status
+      auto_close_console = true,
       -- Add custom gitlab server
       git_services = {
         ["github.com"] = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",

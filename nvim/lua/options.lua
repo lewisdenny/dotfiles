@@ -1,4 +1,3 @@
--- [[ Setting options ]]
 -- NOTE: For more options, you can see `:help option-list` and :help vim.opt`
 
 -- Make line numbers default
@@ -67,3 +66,10 @@ vim.opt.numberwidth = 2
 
 -- Set spell region
 vim.opt.spelllang = "en_au"
+
+--  Folding settings
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = ""
+vim.opt.fillchars:append "fold: "
+vim.opt.foldlevelstart = 99 -- Open all folds by default, zm is not available
