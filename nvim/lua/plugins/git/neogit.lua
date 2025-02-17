@@ -9,15 +9,14 @@ return {
     keys = {
       { "<leader>gg", ":Neogit<CR>", desc = "NeoTree Open Neogit", silent = true },
     },
-    -- trying auto_close_console
-    -- init = function()
-    --   local group = vim.api.nvim_create_augroup("MyCustomNeogitEvents", { clear = true })
-    --   vim.api.nvim_create_autocmd("User", {
-    --     pattern = "NeogitPushComplete",
-    --     group = group,
-    --     callback = require("neogit").close,
-    --   })
-    -- end,
+    init = function()
+      local group = vim.api.nvim_create_augroup("MyCustomNeogitEvents", { clear = true })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "NeogitPushComplete",
+        group = group,
+        callback = require("neogit").close,
+      })
+    end,
     config = {
       -- Hides the hints at the top of the status buffer
       disable_hint = true,
@@ -31,8 +30,6 @@ return {
       log_view = {
         kind = "floating",
       },
-      -- Automatically close the console if the process exits with a 0 (success) status
-      auto_close_console = true,
       -- Add custom gitlab server
       git_services = {
         ["github.com"] = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
