@@ -1,0 +1,3 @@
+worktree-create() {
+    git worktree add -b $1 $1 $2
+}

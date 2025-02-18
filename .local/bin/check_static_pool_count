@@ -1,0 +1,3 @@
+check_static_pool_count() {
+    curl -s 'https://sf.hosted.upshift.rdu2.redhat.com/zuul/api/tenant/tripleo-ci-internal/nodes' | jq -c '.[] | select( .provider | contains("dfg-ci-framework-static-pool"))' | grep -c '"id"'    
+}
