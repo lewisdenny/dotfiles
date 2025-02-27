@@ -1,10 +1,4 @@
 return {
-  -- Install tools
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "yamllint" } },
-  },
-
   -- Configure linter
   {
     "mfussenegger/nvim-lint",

@@ -5,12 +5,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 return {
-  -- Install tools
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "jinja-lsp" } },
-  },
-
   -- Configure lsp
   {
     "neovim/nvim-lspconfig",

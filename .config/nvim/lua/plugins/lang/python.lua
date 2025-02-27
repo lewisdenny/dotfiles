@@ -1,10 +1,4 @@
 return {
-  -- Install tools
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "ruff", "python-lsp-server" } },
-  },
-
   -- Configure lsp
   {
     "neovim/nvim-lspconfig",

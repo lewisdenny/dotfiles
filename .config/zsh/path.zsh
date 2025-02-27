@@ -24,5 +24,10 @@
 
 
 # Override latest node for Quassar
-export PATH="/Users/ldenny/go/bin:/opt/homebrew/opt/node@20/bin:$PATH"
+export PATH="$HOME/go/bin:/opt/homebrew/opt/node@20/bin:$PATH"
 
+# Add Rust Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Add Go Install
+export PATH="$HOME/go/bin/:$PATH"

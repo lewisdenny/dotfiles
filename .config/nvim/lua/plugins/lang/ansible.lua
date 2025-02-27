@@ -1,9 +1,4 @@
 return {
-  -- Install tools
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "ansible-language-server" } },
-  },
 
   -- Configure lsp
   {

@@ -1,4 +1,0 @@
-cd_and_nvim() {
-    cd $1
-    nvim .
-}

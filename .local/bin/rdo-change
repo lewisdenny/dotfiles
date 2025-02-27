@@ -1,3 +1,0 @@
-rdo-change() {
-    open https://review.rdoproject.org/r/q/$1
-}

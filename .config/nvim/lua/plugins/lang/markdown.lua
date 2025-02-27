@@ -1,10 +1,4 @@
 return {
-  -- Install tools
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = { ensure_installed = { "markdownlint-cli2", "marksman", "prettier" } },
-  },
-
   -- Configure linter
   {
     "mfussenegger/nvim-lint",

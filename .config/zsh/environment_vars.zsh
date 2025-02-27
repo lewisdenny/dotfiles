@@ -9,3 +9,5 @@ if which brew > /dev/null; then
   export HOMEBREW_NO_ENV_HINTS=TRUE
 fi
 
+# Jira-cli config
+export JIRA_EDITOR=nvim
