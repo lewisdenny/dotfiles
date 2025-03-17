@@ -1,0 +1,58 @@
+[alias]
+    mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	excludesfile = ~/.gitignore_global
+	pager = delta
+    editor = nvim
+[commit]
+	gpgSign = false
+    verbose = true
+[safe]
+	directory = *
+	directory = .
+[push]
+	autoSetupRemote = true
+[merge]
+	conflictStyle = zdiff3
+[diff]
+    colorMoved = default
+    algorithm = histogram
+    context = 10
+[gpg]
+	format = openpgp
+	program = gpg
+[tag]
+	forceSignAnnotated = false
+[gpg "ssh"]
+	program = ssh-keygen
+	allowedSignersFile =
+[init]
+	defaultBranch = main
+[rerere]
+    enabled = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+[help]
+    autocorrect = prompt
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true

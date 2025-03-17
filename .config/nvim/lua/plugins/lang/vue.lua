@@ -2,7 +2,7 @@ return {
   -- Configure treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "vue", "javascript", "typescript" } },
+    opts = { ensure_installed = { "vue", "css", "javascript", "typescript" } },
   },
 
   -- Configure lsp

@@ -1,8 +1,7 @@
 return {
   {
     "rachartier/tiny-inline-diagnostic.nvim",
-    -- event = "VeryLazy",
-    priority = 1000, -- needs to be loaded in first
+    priority = 1000, -- Needs to be loaded in first
     config = function()
       -- Disable native virtual text
       vim.diagnostic.config { virtual_text = false }

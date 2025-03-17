@@ -1,5 +1,11 @@
 return {
-  -- Configure lsp
+  -- Ensure tools are installed
+  {
+    "williamboman/mason.nvim",
+    opts = { ensure_installed = { "goimports", "gofumpt", "golangci-lint", "delve" } },
+  },
+
+  -- LSP
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -12,49 +18,68 @@ return {
     },
   },
 
-  -- Configure treesitter
+  -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "go", "gomod", "gosum", "gotmpl", "gowork" } },
   },
 
-  -- Configure linter
+  -- Linter
   {
     "mfussenegger/nvim-lint",
     opts = { linters_by_ft = { go = { "golangcilint" } } },
   },
 
-  -- Configure formatting
+  -- Formatting
   {
     "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { go = { "goimports", "gofmt" } } },
+    opts = { formatters_by_ft = { go = { "goimports", "gofumpt" } } },
   },
 
-  -- Configure language plugins
-  {
-    "ray-x/go.nvim",
-    enabled = false,
-    dependencies = {
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("go").setup {
-        -- lsp_inlay_hints = { enable = false }, -- Handled by tiny-inline.nvim
-      }
-    end,
-    event = { "CmdlineEnter" },
-    ft = { "go", "gomod" },
-    build = ':lua require("go.install").update_all_sync()',
-  },
-
+  -- DAP
   {
     "leoluz/nvim-dap-go",
     config = function()
       require("dap-go").setup()
     end,
   },
+
+  -- Testing
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      {
+        "fredrikaverpil/neotest-golang",
+        version = "*",
+        dependencies = { "leoluz/nvim-dap-go" },
+      },
+    },
+    opts = {
+      adapters = {
+        ["neotest-golang"] = {
+          dap_go_enabled = true,
+        },
+      },
+    },
+  },
+
+  -- Configure language plugins
+
+  -- {
+  --   "ray-x/go.nvim",
+  --   enabled = false,
+  --   dependencies = {
+  --     "ray-x/guihua.lua",
+  --     "neovim/nvim-lspconfig",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = function()
+  --     require("go").setup {}
+  --   end,
+  --   event = { "CmdlineEnter" },
+  --   ft = { "go", "gomod" },
+  --   build = ':lua require("go.install").update_all_sync()',
+  -- },
 
   { -- show golang implements
     "maxandron/goplements.nvim",

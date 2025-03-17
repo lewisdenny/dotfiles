@@ -27,7 +27,7 @@ return {
         end,
       })
 
-      -- Show linters for the current buffer's file type
+      -- Show linters for the current buffer's filetype
       vim.api.nvim_create_user_command("LintInfo", function()
         local filetype = vim.bo.filetype
         local linters = require("lint").linters_by_ft[filetype]

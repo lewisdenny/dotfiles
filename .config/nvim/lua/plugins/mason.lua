@@ -29,8 +29,6 @@ return {
         -- Python
         "ruff",
         "python-lsp-server",
-        -- Rust
-        "rust-analyzer",
         -- Bash
         "bash-language-server",
         "shfmt",

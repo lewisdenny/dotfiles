@@ -21,10 +21,7 @@ require("lazy").setup {
   spec = {
     { import = "plugins" },
     { import = "plugins/lang" },
-    { import = "plugins/debug" },
     { import = "plugins/themes" },
-    { import = "plugins/libs" },
-    { import = "plugins/ui" },
     { import = "plugins/git" },
   },
   checker = {

@@ -1,21 +1,25 @@
 return {
+  {
+    "williamboman/mason.nvim",
+    opts = { ensure_installed = { "ansible-lint" } },
+  },
 
-  -- Configure lsp
+  -- LSP
   {
     "neovim/nvim-lspconfig",
     opts = { servers = { ansiblels = {} } },
   },
 
-  -- Configure linter
+  -- Linter
   -- NOTE: Linting is handled by ansiblels
 
-  -- Configure treesitter
+  -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "yaml" } },
   },
 
-  { "mfussenegger/nvim-ansible", event = "VeryLazy" },
+  -- { "mfussenegger/nvim-ansible", event = "VeryLazy" },
 
   -- NOTE: Ansibug is not supported by Mason yet
   {
@@ -28,7 +32,7 @@ return {
       local dap = require "dap"
       dap.adapters.ansible = {
         type = "executable",
-        command = "/Users/ldenny/test-python/bin/python3.11",
+        command = "~/test-python/bin/python3.11",
         args = { "-m", "ansibug", "dap" },
       }
       local ansibug_configurations = {

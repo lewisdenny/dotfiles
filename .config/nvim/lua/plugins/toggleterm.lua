@@ -1,4 +1,4 @@
--- A neovim lua plugin to help easily manage multiple terminal windows
+-- A Neovim lua plugin to help easily manage multiple terminal windows
 return {
   "https://github.com/akinsho/toggleterm.nvim",
   version = "*",

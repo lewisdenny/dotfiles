@@ -1,5 +1,11 @@
 return {
-  -- Configure lsp
+  -- Ensure tools are installed
+  {
+    "williamboman/mason.nvim",
+    opts = { ensure_installed = { "ruff", "python-lsp-server" } },
+  },
+
+  -- LSP
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -27,18 +33,19 @@ return {
     },
   },
 
-  -- Configure treesitter
+  -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "python" } },
   },
 
-  -- Configure formatting
+  -- Formatting
   {
     "stevearc/conform.nvim",
     opts = { formatters_by_ft = { python = { "ruff_fix", "ruff_format" } } },
   },
 
+  -- Debugging
   {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -54,6 +61,20 @@ return {
     },
   },
 
+  -- Testing
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    dependencies = {
+      "nvim-neotest/neotest-python",
+    },
+    opts = {
+      adapters = {
+        ["neotest-python"] = {},
+      },
+    },
+  },
+
   -- Language plugins
   {
     "linux-cultist/venv-selector.nvim",
@@ -63,13 +84,15 @@ return {
       "mfussenegger/nvim-dap-python",
       { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
     },
-    lazy = false,
     branch = "regexp",
-    config = function()
-      require("venv-selector").setup()
-    end,
-    keys = {
-      { ",v", "<cmd>VenvSelect<cr>" },
+    opts = {
+      settings = {
+        options = {
+          notify_user_on_venv_activation = true,
+        },
+      },
     },
+    ft = "python",
+    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv", ft = "python" } },
   },
 }

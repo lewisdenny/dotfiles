@@ -2,7 +2,6 @@ return {
   {
     "saghen/blink.cmp",
     lazy = false, -- lazy loading handled internally
-    -- enabled = false,
     version = "*",
     opts_extend = {
       "sources.completion.enabled_providers",
@@ -24,6 +23,8 @@ return {
         },
       },
     },
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       keymap = { preset = "super-tab" },
       appearance = {
@@ -38,6 +39,9 @@ return {
       completion = {
         -- Show documentation when selecting a completion item
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      },
+      cmdline = {
+        enabled = true,
       },
     },
   },

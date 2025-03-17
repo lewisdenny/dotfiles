@@ -42,7 +42,7 @@ vim.opt.splitbelow = true
 -- Make tabs take up the space of four spaces
 vim.opt.tabstop = 4
 
--- Sets how neovim will display certain whitespace characters in the editor.
+-- Sets how Neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
@@ -73,3 +73,6 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.fillchars:append "fold: "
 vim.opt.foldlevelstart = 99 -- Open all folds by default, zm is not available
+
+-- Imporved diff opts
+vim.opt.diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
