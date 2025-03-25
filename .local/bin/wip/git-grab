@@ -1,0 +1,14 @@
+# script to clone repos into a bare repo and create the main branch worktree and prs dir.
+# for gh repos it should also optionally support forking and set the remote.
+# gh repo fork git@github.com:containers/podman.git --clone --remote -- --bare
+#   1023    cd podman.git
+  1025    mkdir .git
+  1026    mv hooks info objects refs config description FETCH_HEAD HEAD packed-refs .git
+  1028    worktree-create
+  1030    git worktree list
+  1032    git worktree create main upstream/main
+  1033    git branch -r
+  1034    git worktree add -b main main upstream/main
+  1035    git worktree add main upstream/main
+  1037    cd main
+▌ 1040    git checkout main

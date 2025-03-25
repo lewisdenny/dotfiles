@@ -16,6 +16,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- NOTE: Open Lazy with keymap rather than typing :Lazy
+vim.keymap.set("n", "<leader>L", "<cmd>Lazy<CR>")
+
 -- Setup lazy.nvim
 require("lazy").setup {
   spec = {

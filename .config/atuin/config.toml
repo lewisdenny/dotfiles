@@ -1,0 +1,13 @@
+## date format used, either "us" or "uk"
+dialect = "uk"
+
+## which style to use
+## possible values: auto, full, compact
+style = "auto"
+
+## the maximum number of lines the interface should take up
+## set it to 0 to always go full screen
+inline_height = 30
+
+## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
+enter_accept = false

@@ -21,14 +21,14 @@ export ZSH_CONFIG=$HOME/.config/zsh
 # Load env_vars
 [ -f $ZSH_CONFIG/environment_vars.zsh ] && source $ZSH_CONFIG/environment_vars.zsh
 
-# Load plugins
-[ -f $ZSH_CONFIG/plugins.zsh ] && source $ZSH_CONFIG/plugins.zsh
-
 # Load general config
 [ -f $ZSH_CONFIG/general.zsh ] && source $ZSH_CONFIG/general.zsh
 
 # Load completeion
 [ -f $ZSH_CONFIG/auto_complete.zsh ] && source $ZSH_CONFIG/auto_complete.zsh
+
+# Load plugins
+[ -f $ZSH_CONFIG/plugins.zsh ] && source $ZSH_CONFIG/plugins.zsh
 
 # https://www.dotruby.com/articles/profiling-zsh-setup-with-zprof
 # `time ZSH_DEBUGRC=1 zsh -i -c exit`

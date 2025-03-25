@@ -76,3 +76,9 @@ vim.opt.foldlevelstart = 99 -- Open all folds by default, zm is not available
 
 -- Imporved diff opts
 vim.opt.diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
+
+-- Disable the swapfile
+vim.opt.swapfile = false
+
+-- Disable line wrap
+vim.opt.wrap = false
