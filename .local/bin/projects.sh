@@ -15,7 +15,7 @@ fd() {
     cd "$DIR" || return
 }
 
-function show_help() {
+show_help() {
   cat <<EOF
   Usage: ${0##*/} [OPTIONS] [inital-query-string]
 

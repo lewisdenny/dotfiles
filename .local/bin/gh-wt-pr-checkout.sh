@@ -8,7 +8,7 @@ code_dir="$HOME/Code/"
 # validate_github_pr_url checks input against regex to validate
 # If matching, input is passed through sed to remove an common url
 # extras for QOL
-function validate_github_pr_url() {
+validate_github_pr_url() {
   local url="$1"
 
   # Regex to match the specific GitHub pull request URL format
@@ -96,7 +96,7 @@ gh-wt-pr-checkout() {
   cd "$repo_dir/prs/$pr_number-$pr_branch" || exit 1
 }
 
-function show_help() {
+show_help() {
   cat <<EOF
 Usage: ${0##*/} [OPTIONS] <github-pr-url>
 
