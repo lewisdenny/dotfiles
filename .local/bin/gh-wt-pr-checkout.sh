@@ -36,7 +36,7 @@ find_repo_dir_from_pr_url() {
   file_list=$(rg --files --glob '**/config' "$code_dir")
   result_list=()
   for file in $file_list; do
-    if ! grep -q "$domain:$org_repo" "$file"; then
+    if ! grep -q "$domain:$org_repo" "$file" && ! grep -q "$domain/$org_repo" "$file"; then
       continue
     fi
     if ! grep -q '[core]' "$file"; then
@@ -47,6 +47,7 @@ find_repo_dir_from_pr_url() {
 
   if [[ "${#result_list[@]}" -ne 1 ]]; then
     echo "more then 1 repo found"
+    echo "${result_list[@]}"
     exit 1
   fi
 

@@ -22,6 +22,7 @@ return {
           },
         },
       },
+      { "https://github.com/xzbdmw/colorful-menu.nvim" },
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -34,11 +35,33 @@ return {
       snippets = { preset = "luasnip" },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
+        providers = {
+          buffer = { min_keyword_length = 3 },
+        },
       },
       signature = { enabled = true },
       completion = {
         -- Show documentation when selecting a completion item
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
+        menu = {
+          draw = {
+            columns = {
+              { "kind_icon" },
+              { "label", gap = 1 },
+              { "source_name" },
+            },
+            components = {
+              label = {
+                text = function(ctx)
+                  return require("colorful-menu").blink_components_text(ctx)
+                end,
+                highlight = function(ctx)
+                  return require("colorful-menu").blink_components_highlight(ctx)
+                end,
+              },
+            },
+          },
+        },
       },
       cmdline = {
         enabled = false,

@@ -11,8 +11,11 @@ fd() {
   fi
 
   # NOTE: -maxdepth may need to be increased if results are not showing in the future
-  DIR=$(find ~/code -maxdepth 5 -type d -name .git -prune | xargs -P0 -n1 dirname | sort -u | fzf --query "$query") &&
+  DIR=$(find ~/code -maxdepth 5 -type d -name .git -prune | xargs -P0 -n1 dirname | sort -u | fzf --query "$query" --ansi --preview "eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions {}")
+
+  if [[ -n "$DIR" ]]; then
     cd "$DIR" || return
+  fi
 }
 
 show_help() {

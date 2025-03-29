@@ -10,4 +10,5 @@ macos-option-as-alt = true
 copy-on-select = false
 
 # Keybindings
-keybind = global:ctrl+grave_accent=toggle_quick_terminal # grave means backtick like `
+# grave means backtick like `
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
