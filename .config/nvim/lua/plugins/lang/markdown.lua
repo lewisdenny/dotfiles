@@ -33,11 +33,12 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    ft = { "markdown" },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
       completions = {
-        blink = { enabled = true },
+        blink = { enabled = false }, --NOTE: lsp is recommended by plugin
         lsp = { enabled = true },
       },
       anti_conceal = {
@@ -49,7 +50,24 @@ return {
           rendered = "n", -- NOTE: Prevent link expansion in normal mode
         },
       },
-
+      heading = {
+        sign = false,
+        border = true,
+        width = "block",
+        below = "▔",
+        above = "▁",
+        left_pad = 0,
+        right_pad = 2,
+        position = "overlay",
+        icons = {
+          "██ ",
+          "███ ",
+          "████ ",
+          "█████ ",
+          "██████ ",
+          "███████ ",
+        },
+      },
       callout = { -- NOTE: this could be removed, just here to see all the callouts
         note = { raw = "[!NOTEE]", rendered = "󰋽 Note", highlight = "RenderMarkdownInfo" },
         tip = { raw = "[!TIP]", rendered = "󰌶 Tip", highlight = "RenderMarkdownSuccess" },
@@ -78,24 +96,6 @@ return {
         example = { raw = "[!EXAMPLE]", rendered = "󰉹 Example", highlight = "RenderMarkdownHint" },
         quote = { raw = "[!QUOTE]", rendered = "󱆨 Quote", highlight = "RenderMarkdownQuote" },
         cite = { raw = "[!CITE]", rendered = "󱆨 Cite", highlight = "RenderMarkdownQuote" },
-      },
-    },
-    ft = { "markdown" },
-  },
-
-  {
-    "saghen/blink.cmp",
-    opts = {
-      sources = {
-        -- add lazydev to your completion providers
-        default = { "markdown" },
-        providers = {
-          markdown = {
-            name = "RenderMarkdown",
-            module = "render-markdown.integ.blink",
-            fallbacks = { "lsp" },
-          },
-        },
       },
     },
   },

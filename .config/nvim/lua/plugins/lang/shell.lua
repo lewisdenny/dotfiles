@@ -12,7 +12,13 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 return {
-  -- Configure treesitter
+  -- Ensure tools are installed
+  {
+    "williamboman/mason.nvim",
+    opts = { ensure_installed = { "bash-language-server", "shfmt" } },
+  },
+
+  -- Configure Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "bash" } },
@@ -21,7 +27,19 @@ return {
   -- Configure lsp
   {
     "neovim/nvim-lspconfig",
-    opts = { servers = { bashls = {} } },
+    opts = {
+      servers = {
+        bashls = {
+          settings = {
+            bashIde = {
+              shfmt = {
+                path = "", --NOTE: Disable and let Conform format
+              },
+            },
+          },
+        },
+      },
+    },
   },
 
   -- Configure formatting
