@@ -26,6 +26,7 @@ require("lazy").setup {
     { import = "plugins/lang" },
     { import = "plugins/themes" },
     { import = "plugins/git" },
+    { import = "plugins/core" },
   },
   checker = {
     -- automatically check for plugin updates
