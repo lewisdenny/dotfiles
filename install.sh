@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-stow -t $HOME .
+stow --dotfiles -t $HOME .

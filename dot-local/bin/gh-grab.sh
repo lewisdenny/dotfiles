@@ -8,7 +8,7 @@ validate_github_pr_url() {
   local url="$1"
 
   # Regex to match the specific GitHub repo format
-  local regex='^git@github\.com:[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+.git$'
+  local regex='^git@github\.com:[a-zA-Z0-9_-]+\/[a-zA-Z0-9_.]+\.git$'
   if [[ "$url" =~ $regex ]]; then
     echo "$url"
     return 0
@@ -20,6 +20,10 @@ validate_github_pr_url() {
 
 gh-grab() {
   url="$(validate_github_pr_url "$@")"
+  if [[ $? != 0 ]]; then
+    echo "$url"
+    exit 1
+  fi
   domain=$(echo "$url" | sed -E 's/.*@([^:]*):.*/\1/')
   repo_org=$(echo "$url" | sed -E 's/.*:([^\/]*)\/.*/\1/')
   repo_name=$(echo "$url" | sed -E 's/.*\/(.*)/\1/')

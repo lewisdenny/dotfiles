@@ -9,6 +9,8 @@ cursor-style-blink = false
 macos-option-as-alt = true
 copy-on-select = false
 
+quick-terminal-position = center
+
 # Keybindings
 # grave means backtick like `
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
