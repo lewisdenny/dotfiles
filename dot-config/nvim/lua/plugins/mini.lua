@@ -48,21 +48,21 @@ return {
 
   -- Neovim Lua plugin to move any selection in any direction. Part of 'mini.nvim' library.
   -- https://github.com/echasnovski/mini.move
-  {
-    "echasnovski/mini.move",
-    version = "*",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      mappings = {
-        -- Move visual selection in Visual mode.
-        -- Move lines with shift + v then shift + k,j,h,l
-        up = "K",
-        down = "J",
-        left = "H",
-        right = "L",
-      },
-    },
-  },
+  -- {
+  --   "echasnovski/mini.move",
+  --   version = "*",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   opts = {
+  --     mappings = {
+  --       -- Move visual selection in Visual mode.
+  --       -- Move lines with shift + v then shift + k,j,h,l
+  --       up = "K",
+  --       down = "J",
+  --       left = "H",
+  --       right = "L",
+  --     },
+  --   },
+  -- },
 
   -- Minimal and fast autopairs
   -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-pairs.md

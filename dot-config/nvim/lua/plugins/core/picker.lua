@@ -2,16 +2,21 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      explorer = {
+        replace_netrw = true, -- Replace netrw with the snacks explorer
+      },
       picker = {
         hidden = true,
         sources = {
           explorer = {
+            jump = { close = true },
             auto_close = true,
+            hidden = false,
+            include = {
+              "*", -- NOTE: Same as hidden = true just without the annoying h in the heading
+            },
           },
         },
-      },
-      explorer = {
-        hidden = true,
       },
     },
  -- stylua: ignore
