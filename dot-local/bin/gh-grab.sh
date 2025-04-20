@@ -45,8 +45,6 @@ gh-grab() {
 
   mv -- * .git
 
-  mkdir prs
-
   git worktree add main main
 }
 

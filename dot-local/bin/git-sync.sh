@@ -9,6 +9,7 @@ set -x
 set -e
 
 check_branch() {
+  # discover the upstream branch name
   for i in main master; do
     if git branch -r --list | grep -q $i; then
       echo $i
@@ -34,12 +35,39 @@ find_git_root() {
 # Confirm git repo and return root dir
 
 sync() {
-  branch="$(check_branch)"
+  local branch
+  upstreamBranch="$(check_branch)"
   git_root="$(find_git_root)"
-  cd "$git_root/$branch"
+
+  # if a branch has been passed though to script, use that
+  # rather than rebasing main from upstream/main
+  if [[ -n $* ]]; then
+    # local array=("$@")
+    # local wt="${array[1]}"
+    local branch
+    branch=$*
+    echo "$branch"
+  else
+    branch=$upstreamBranch
+  fi
+
+  # The dir may have the PR number
+  # local gitDirs
+  # gitDirs=$(/bin/ls -1 "$git_root")
+  local branchDir
+  branchDir=$(/bin/ls -1 "$git_root" | grep -E "^(?:[0-9]*-)?${branch}$")
+  #TODO: ensure only one result
+  if [[ -n $branchDir ]]; then
+    pushd "$git_root/$branchDir"
+  else
+    echo "Can't find branch dir"
+    exit
+  fi
+
   git fetch --all
-  git rebase "upstream/$branch"
-  git push origin "$branch"
+  git rebase "upstream/$upstreamBranch"
+  # git push origin "$branch"
+  popd
 }
 
 show_help() {

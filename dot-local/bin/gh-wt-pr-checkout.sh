@@ -76,7 +76,7 @@ gh-wt-pr-checkout() {
   pr_number=$(echo "$url" | sed -E 's|.*/pull/([0-9]+)(/.*)?$|\1|')
   repo_dir="$(find_repo_dir_from_pr_url "$url")"
   main_branch="$(find_repo_main_branch)"
-  worktree_dir="$repo_dir/prs/$pr_number"
+  worktree_dir="$repo_dir/$pr_number"
 
   cd "$repo_dir/$main_branch" || exit 1
 
@@ -94,7 +94,7 @@ gh-wt-pr-checkout() {
   mv "$worktree_dir" "$worktree_dir-$pr_branch"
   git worktree repair "$worktree_dir-$pr_branch"
 
-  cd "$repo_dir/prs/$pr_number-$pr_branch" || exit 1
+  cd "$repo_dir/$pr_number-$pr_branch" || exit 1
 }
 
 show_help() {
