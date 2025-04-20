@@ -5,21 +5,21 @@ return {
     opts = { ensure_installed = { "harper-ls" } },
   },
 
-  -- esting the hapar thing tho
   -- LSP
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
         harper_ls = {
-          enabled = false,
-          -- filetypes = { "markdown" },
+          enabled = true,
+          filetypes = { "markdown" },
           settings = {
             ["harper-ls"] = {
+              userDictPath = vim.fn.stdpath "config" .. "/dict.txt",
               linters = {
+                SentenceCapitalization = false,
+                SpellCheck = false,
                 ToDoHyphen = false,
-                SentenceCapitalization = true,
-                SpellCheck = true,
               },
               isolateEnglish = true,
             },
