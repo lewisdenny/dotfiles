@@ -4,6 +4,7 @@ return {
   enabled = true,
   event = "VeryLazy",
   opts = {
+    always_show_path = true,
     show_icons = true,
     leader_key = "<leader>m",
     index_keys = "afjkl;hg",
