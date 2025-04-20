@@ -2,7 +2,7 @@
 
 -- Make line numbers default
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -75,7 +75,18 @@ vim.opt.fillchars:append "fold: "
 vim.opt.foldlevelstart = 99 -- Open all folds by default, zm is not available
 
 -- Imporved diff opts
-vim.opt.diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
+vim.opt.diffopt = {
+  "internal",
+  "filler",
+  "closeoff",
+  "context:12",
+  "indent-heuristic",
+  "linematch:60",
+  "algorithm:histogram",
+}
+vim.opt.fillchars = {
+  diff = "╱",
+}
 
 -- Disable the swapfile
 vim.opt.swapfile = false
