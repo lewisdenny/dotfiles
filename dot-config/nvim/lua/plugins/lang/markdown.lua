@@ -1,3 +1,12 @@
+-- Set Markdown settings
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.md" },
+  callback = function()
+    -- NOTE: Set colorcolumn as I manually handle linelengh for markdown files
+    vim.opt.colorcolumn = "80"
+  end,
+})
+
 return {
   -- Linter
   {
