@@ -68,5 +68,6 @@ map("n", "<leader>crn", vim.lsp.buf.rename, { desc = "Renames all references to 
 
 vim.diagnostic.config { virtual_lines = { current_line = true } } --NOTE: Testing this vs "tiny-inline-diagnostic plugin"
 
+-- NOTE: Mouse menu options
 vim.cmd.amenu [[PopUp.Code\ action <Cmd>lua vim.lsp.buf.code_action()<CR>]]
 vim.cmd.amenu [[PopUp.LSP\ Hover <Cmd>lua vvim.lsp.buf.hoverim.lsp.buf.hover()<CR>]]

@@ -19,8 +19,6 @@ return {
     opts = { ensure_installed = { "yaml" } },
   },
 
-  -- { "mfussenegger/nvim-ansible", event = "VeryLazy" },
-
   -- NOTE: Ansibug is not supported by Mason yet
   {
     "mfussenegger/nvim-dap",
