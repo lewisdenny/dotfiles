@@ -24,11 +24,12 @@ return {
     opts = { ensure_installed = { "go", "gomod", "gosum", "gotmpl", "gowork" } },
   },
 
+  -- FIX: golangcilint isn't working and throwing error codes :/
   -- Linter
-  {
-    "mfussenegger/nvim-lint",
-    opts = { linters_by_ft = { go = { "golangcilint" } } },
-  },
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   opts = { linters_by_ft = { go = { "golangcilint" } } },
+  -- },
 
   -- Formatting
   {
@@ -67,7 +68,7 @@ return {
 
   -- {
   --   "ray-x/go.nvim",
-  --   enabled = false,
+  --   enabled = true,
   --   dependencies = {
   --     "ray-x/guihua.lua",
   --     "neovim/nvim-lspconfig",
