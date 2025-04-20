@@ -1,3 +1,6 @@
+# Dots
+
+```shell
             __                         __
            /%%\                  ^    /%%\
        ^  /%%%%\      *-*            /%%%%\
@@ -14,3 +17,10 @@
 |||_______|____|__HHH___|_|_|___HHH__|____|_______|||
 _________________________   _________________________
                A man's ~ is his castle
+```
+
+---
+
+## Todo
+
+- [ ] conform - Toggle formatting of whole file vs only modified lines
