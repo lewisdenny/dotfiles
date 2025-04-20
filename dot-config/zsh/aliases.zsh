@@ -5,6 +5,7 @@ alias gs="git status"
 alias gr="git remote -v"
 alias gwtl="git worktree list"
 alias pj=". pj.sh" # NOTE: Without the dot, the cd inside projects.sh runs inside the subprocess
+alias wt=". wt.sh" # NOTE: Without the dot, the cd inside projects.sh runs inside the subprocess
 
 # ---- Eza (better ls) -----
 alias ls="eza --color=always --long --hyperlink -git --no-filesize --icons=always --no-time --no-user --no-permissions"
