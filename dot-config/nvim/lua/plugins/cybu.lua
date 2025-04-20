@@ -3,18 +3,23 @@ return {
   {
     "ghillb/cybu.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+    -- stylua: ignore
     keys = {
-      { "<S-Tab>", "<Plug>(CybuLastusedPrev)" },
-      { "<TAB>", "<Plug>(CybuLastusedNext)" },
+      { "<TAB>", "<cmd>CybuLastusedNext<cr>", desc = "Cycle to last used buffer" },
+      { "<S-Tab>", "<cmd>CybuLastusedPrev<cr>)", desc = "Reverse cycle to last used buffer" },
     },
     opts = {
       behavior = { -- set behavior for different modes
         mode = {
           last_used = {
             switch = "on_close", -- immediate, on_close
-            view = "rolling", -- paging, rolling
+            view = "paging", -- paging, rolling
           },
         },
+      },
+      display_time = 1000, -- time the cybu window is displayed
+      exclude = { -- filetypes, cybu will not be active
+        "lazy",
       },
       style = {
         path = "tail_dir",
