@@ -5,7 +5,7 @@ font-size = 14
 font-thicken = true
 
 cursor-style-blink = false
-
+scrollback-limit = 2147483648
 macos-option-as-alt = true
 copy-on-select = false
 
