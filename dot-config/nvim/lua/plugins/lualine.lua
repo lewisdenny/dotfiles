@@ -6,6 +6,14 @@ return {
       local lazy_status = require "lazy.status"
       require("lualine").setup {
         options = {
+          disabled_filetypes = {
+            -- https://github.com/igorlfs/nvim-dap-view/issues/36
+            winbar = {
+              "dap-view",
+              "dap-repl",
+              "dap-view-term",
+            },
+          },
           globalstatus = true,
         },
         extensions = {
