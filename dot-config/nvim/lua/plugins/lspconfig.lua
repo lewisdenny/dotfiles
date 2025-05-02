@@ -15,6 +15,17 @@ return {
       },
     },
     config = function(_, opts)
+      -- Exclude big directories from being watched
+      vim.lsp._watchfiles._poll_exclude_pattern = vim.lsp._watchfiles._poll_exclude_pattern
+        -- Standard cache dirs
+        + vim.glob.to_lpeg "**/.*_cache/**"
+        + vim.glob.to_lpeg "**/.venv/**"
+        -- JS/TS
+        + vim.glob.to_lpeg "**/.yarn/**"
+        + vim.glob.to_lpeg "**/node_modules/**"
+        -- rust build assets
+        + vim.glob.to_lpeg "**/target/**"
+
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this

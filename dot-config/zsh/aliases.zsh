@@ -1,11 +1,14 @@
 alias sed="/opt/homebrew/bin/gsed"
 alias grep="/opt/homebrew/bin/ggrep"
+alias make="/opt/homebrew/bin/gmake"
 alias gpf="git push --force"
 alias gs="git status"
 alias gr="git remote -v"
 alias gwtl="git worktree list"
-alias pj=". pj.sh" # NOTE: Without the dot, the cd inside projects.sh runs inside the subprocess
-alias wt=". wt.sh" # NOTE: Without the dot, the cd inside projects.sh runs inside the subprocess
+
+# NOTE: Without the dot, the cd inside the script runs inside the subprocess
+alias pj=". pj.sh"
+alias wt=". wt.sh"
 
 # ---- Eza (better ls) -----
 alias ls="eza --color=always --long --hyperlink -git --no-filesize --icons=always --no-time --no-user --no-permissions"
