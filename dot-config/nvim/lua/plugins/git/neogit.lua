@@ -21,14 +21,14 @@ return {
       -- Hides the hints at the top of the status buffer
       disable_hint = true,
       -- Change the default way of opening neogit
-      kind = "floating",
+      kind = "split", --NOTE: "Floating" is kinda buggy
       commit_editor = {
-        kind = "floating",
+        kind = "split",
       },
       -- Show message with spinning animation when a git command is running.
       process_spinner = true,
       log_view = {
-        kind = "floating",
+        kind = "replace",
       },
       -- Add custom gitlab server
       git_services = {
