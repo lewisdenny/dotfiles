@@ -64,7 +64,8 @@ vim.opt.grepprg = "rg --vimgrep"
 -- Default: 4
 vim.opt.numberwidth = 2
 
--- Set spell region
+-- Set spell opts
+vim.opt.spell = true
 vim.opt.spelllang = "en_au"
 
 --  Folding settings
