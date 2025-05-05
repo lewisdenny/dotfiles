@@ -1,6 +1,37 @@
 -- See `:help gitsigns` to understand what the configuration keys do
+function SetGitSignsBlame(state)
+  local foundBlameWindow, winid = GetGitSignsBlame()
+
+  if state and not foundBlameWindow then
+    vim.cmd "Gitsigns blame"
+  end
+  if not state and foundBlameWindow then
+    vim.api.nvim_win_close(winid, false)
+  end
+end
+
+function GetGitSignsBlame()
+  local all_windows = vim.api.nvim_list_wins() -- Get a list of all window IDs
+  local FoundGitBlame = false
+  local winid
+
+  for _, win_id in ipairs(all_windows) do
+    if vim.api.nvim_win_is_valid(win_id) then -- Check if the window is still valid
+      local buf_nr = vim.api.nvim_win_get_buf(win_id) -- Get the buffer handle for the window
+      if vim.api.nvim_buf_is_valid(buf_nr) then
+        local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf_nr }) -- Get the filetype of the buffer
+        if filetype == "gitsigns-blame" then
+          FoundGitBlame = true
+          winid = win_id
+        end
+      end
+    end
+  end
+  return FoundGitBlame, winid
+end
+
 return {
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
+  {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = {
@@ -12,27 +43,6 @@ return {
       },
       on_attach = function(bufnr)
         local gitsigns = require "gitsigns"
-
-        function ToggleGitSignsBlame()
-          local all_windows = vim.api.nvim_list_wins() -- Get a list of all window IDs
-          local closedGitBlame = false
-
-          for _, win_id in ipairs(all_windows) do
-            if vim.api.nvim_win_is_valid(win_id) then -- Check if the window is still valid
-              local buf_nr = vim.api.nvim_win_get_buf(win_id) -- Get the buffer handle for the window
-              if vim.api.nvim_buf_is_valid(buf_nr) then
-                local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf_nr }) -- Get the filetype of the buffer
-                if filetype == "gitsigns-blame" then
-                  vim.api.nvim_win_close(win_id, false) -- Close the window, don't close the buffer
-                  closedGitBlame = true
-                end
-              end
-            end
-          end
-          if not closedGitBlame then
-            gitsigns.blame()
-          end
-        end
 
         local function map(mode, l, r, opts)
           opts = opts or {}
@@ -60,19 +70,21 @@ return {
         map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "git [S]tage buffer" })
         map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "git [R]eset buffer" })
         map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "git [p]review hunk" })
-        map("n", "<leader>hb", gitsigns.blame_line, { desc = "git [b]lame line" })
         map("n", "<leader>hB", gitsigns.blame, { desc = "git [B]lame" })
         map("n", "<leader>hd", gitsigns.diffthis, { desc = "git [d]iff against index" })
+        map("n", "<leader>hq", gitsigns.setqflist, { desc = "send hunks to the quickfix list" })
         map("n", "<leader>hD", function() gitsigns.diffthis "@" end, { desc = "git [D]iff against last commit" })
         map("v", "<leader>hs", function() gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" } end, { desc = "git [s]tage selected lines" })
         map("v", "<leader>hr", function() gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" } end, { desc = "git [r]eset selected lines" })
 
         -- Toggles
+        Snacks.toggle.new({
+          id = "gitblame",
+          name = "Git Blame",
+          get = function() local a, _ = GetGitSignsBlame() return a end,
+          set = SetGitSignsBlame,
+        }):map "<leader>uB"
         map("n", "<leader>ub", gitsigns.toggle_current_line_blame, { desc = "[T]oggle git show [b]lame line" })
-
-        -- We don't use map() here so the keymap is global
-        vim.keymap.set("n", "<leader>uB", ToggleGitSignsBlame, { desc = "[T]oggle git [B]lame window" })
-        -- stylua: ignore end
       end,
     },
   },
