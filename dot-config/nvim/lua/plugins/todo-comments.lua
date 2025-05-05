@@ -1,20 +1,16 @@
 -- Highlight todo, notes, etc in comments
--- https://github.com/folke/todo-comments.nvim
--- TODO: Test
--- HACK: Test
--- NOTE: test
--- WARN: test
--- PERF: test
--- TEST: test
--- FIX: test
--- BUG: test
--- ISSUE: test
 return {
   {
     "folke/todo-comments.nvim",
     version = "*",
-    event = "VimEnter",
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = { signs = true },
+    opts = {
+      keywords = {
+        NOTE = { icon = " ", color = "hint", alt = { "INFO", "Note" } },
+        HACK = { icon = " ", color = "warning", alt = { "Hack" } },
+        TODO = { icon = " ", color = "info", alt = { "Todo" } },
+      },
+    },
   },
 }
