@@ -30,11 +30,7 @@ map("n", "<leader>y", "<cmd>%y+<CR>", { desc = "general yank whole file" })
 -- Enter command mode with either ; or :
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
--- Exit back to normal mode with jk chord
-map("i", "jk", "<ESC>")
-map("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
--- Change the the annoy cut behavior but allow it via shift
+-- Change the annoying cut behaviour but allow it via shift
 map({ "n", "v" }, "d", '"_d', { noremap = true })
 map({ "n", "v" }, "D", "d", { noremap = true })
 map({ "n", "v" }, "x", '"_x', { noremap = true })
