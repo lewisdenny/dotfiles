@@ -22,9 +22,8 @@ return {
       { "<C-t>",function() Snacks.terminal.toggle() end, mode = { "n", "t" }, desc = "Toggle Terminal" },
       { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
       { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
-      { "<leader>gB", function() Snacks.gitbrowse() end, mode = { "n", "v" }, desc = "Git Browse" },
-      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-      { "<leader>sD", function() Snacks.dashboard() end, desc = "Open Snack Dashboard" },
+      { "<leader>hO", function() Snacks.gitbrowse() end, mode = { "n", "v" }, desc = "Open in browser" },
+      { "<leader>hb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {

@@ -4,7 +4,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",
-      -- "nvim-telescope/telescope.nvim",
     },
     keys = {
       { "<leader>gg", ":Neogit<CR>", desc = "NeoTree Open Neogit", silent = true },
@@ -20,7 +19,7 @@ return {
     config = {
       -- Hides the hints at the top of the status buffer
       disable_hint = true,
-      -- Change the default way of opening neogit
+      -- Change the default way of opening Neogit
       kind = "split", --NOTE: "Floating" is kinda buggy
       commit_editor = {
         kind = "split",
