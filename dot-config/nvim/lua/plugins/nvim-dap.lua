@@ -6,25 +6,15 @@ return {
     "igorlfs/nvim-dap-view",
   },
   event = "BufReadPre",
-  -- stylua: ignore
   keys = function(_, keys)
     local dap = require "dap"
     return {
-      { "<leader>db", dap.continue, desc = "Debug: Start/Continue" },
-      { "<F1>", dap.step_into, desc = "Debug: Step Into" },
-      { "<leader>dc", dap.step_over, desc = "Debug: Step Over" },
-      { "<F3>", dap.step_out, desc = "Debug: Step Out" },
-      { "<leader>b", dap.toggle_breakpoint, desc = "Debug: Toggle Breakpoint" },
-      { "<leader>dd",
-        function()
-          local widgets = require "dap.ui.widgets"
-          widgets.centered_float(widgets.scopes, { border = "rounded" })
-        end,
-        desc = "Show DAP Scopes",
-      },
+      { "<leader>b", dap.toggle_breakpoint, desc = "Toggle Breakpoint" },
+      { "<leader>B", dap.clear_breakpoints, desc = "Clear Breakpoint" },
       unpack(keys),
     }
   end,
+
   config = function()
     local dap, dv = require "dap", require "dap-view"
 
@@ -55,22 +45,5 @@ return {
     dap.listeners.before.event_exited["dap-view-config"] = function()
       dv.close()
     end
-    -- dap.listeners.after.event_initialized["dap-view-close-console"] = function(session)
-    --   session.on_close["custom.terminal-autoclose"] = function()
-    --     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    --       local bufname = vim.api.nvim_buf_get_name(buf)
-    --       if bufname:find "%[dap%-terminal%]" then
-    --         vim.api.nvim_buf_delete(buf, { force = true })
-    --       end
-    --     end
-    --   end
-    -- end
-
-    -- Restore session breakpoints
-    -- vim.api.nvim_create_autocmd("SessionLoadPost", {
-    --   callback = function()
-    --     require("lib.dap").load_breakpoints()
-    --   end,
-    -- })
   end,
 }
