@@ -6,7 +6,7 @@ return {
       "sindrets/diffview.nvim",
     },
     keys = {
-      { "<leader>gg", ":Neogit<CR>", desc = "NeoTree Open Neogit", silent = true },
+      { "<leader>gg", ":Neogit<CR>", desc = "Open Neogit", silent = true },
     },
     init = function()
       local group = vim.api.nvim_create_augroup("MyCustomNeogitEvents", { clear = true })
@@ -35,7 +35,6 @@ return {
         ["bitbucket.org"] = "https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1",
         ["gitlab.com"] = "https://gitlab.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}",
         ["azure.com"] = "https://dev.azure.com/${owner}/_git/${repository}/pullrequestcreate?sourceRef=${branch_name}&targetRef=${target}",
-        ["gitlab.cee.redhat.com"] = "https://gitlab.cee.redhat.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}",
       },
     },
   },
