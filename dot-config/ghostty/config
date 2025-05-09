@@ -1,3 +1,5 @@
+theme = onedarkpro_onedark_vivid
+
 font-family = Maple Mono Mono NF
 font-family-italic = Maple Mono NF
 font-family-bold-italic = Maple Mono NF
@@ -7,7 +9,9 @@ font-thicken = true
 cursor-style-blink = false
 scrollback-limit = 2147483648
 macos-option-as-alt = true
-copy-on-select = false
+
+clipboard-read = allow
+clipboard-write = allow
 
 quick-terminal-position = center
 
