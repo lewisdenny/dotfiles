@@ -1,4 +1,7 @@
 return {
-  "Bekaboo/dropbar.nvim",
-  lazy = false, -- lazy loading is done inside the plugin
+  {
+    "Bekaboo/dropbar.nvim",
+    version = "*",
+    lazy = false, -- lazy loading is done inside the plugin
+  },
 }

@@ -16,7 +16,7 @@ return {
         callback = require("neogit").close,
       })
     end,
-    config = {
+    opts = {
       -- Hides the hints at the top of the status buffer
       disable_hint = true,
       -- Change the default way of opening Neogit
