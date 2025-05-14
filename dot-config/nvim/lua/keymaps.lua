@@ -7,9 +7,6 @@ local map = vim.keymap.set
 --  See `:help hlsearch`
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Diagnostic keymaps
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -25,7 +22,8 @@ map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-map("n", "<leader>y", "<cmd>%y+<CR>", { desc = "general yank whole file" })
+-- Yank the contents of the current buffer
+map("n", "<leader>y", "<cmd>%y+<CR>", { desc = "Yank whole file" })
 
 -- Enter command mode with either ; or :
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -38,32 +36,9 @@ map({ "n", "v" }, "X", "x", { noremap = true })
 map("n", "dd", '"_dd', { noremap = true })
 map("n", "DD", "dd", { noremap = true })
 
--- [[ Basic Autocommands ]]
-
--- Highlight when yanking (copying) text
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})
-
--- Custom Redir command to redirect command output to a buffer
--- `Redir lua= require 'lazy.core.config'`
-vim.api.nvim_create_user_command("Redir", function(ctx)
-  local lines = vim.split(vim.api.nvim_exec(ctx.args, true), "\n", { plain = true })
-  vim.cmd "new"
-  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
-  vim.opt_local.modified = false
-end, { nargs = "+", complete = "command" })
-
+-- Clean up open buffers
 map("n", "<leader>cla", ":w <bar> %bd <bar> e# <bar> bd# <CR>", { desc = "Close all other buffers except current one" })
 
-map("n", "<leader>crn", vim.lsp.buf.rename, { desc = "Renames all references to the symbol under the cursor" })
-
-vim.diagnostic.config { virtual_lines = { current_line = true } } --NOTE: Testing this vs "tiny-inline-diagnostic plugin"
-
--- NOTE: Mouse menu options
+-- Mouse menu options
 vim.cmd.amenu [[PopUp.Code\ action <Cmd>lua vim.lsp.buf.code_action()<CR>]]
 vim.cmd.amenu [[PopUp.LSP\ Hover <Cmd>lua vvim.lsp.buf.hoverim.lsp.buf.hover()<CR>]]

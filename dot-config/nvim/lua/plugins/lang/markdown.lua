@@ -1,29 +1,8 @@
--- Set Markdown settings
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.md" },
-  callback = function()
-    -- NOTE: Set colorcolumn as I manually handle linelengh for markdown files
-    vim.opt.colorcolumn = "80"
-  end,
-})
-
 return {
   -- Linter
   {
     "mfussenegger/nvim-lint",
     opts = { linters_by_ft = { markdown = { "markdownlint-cli2" } } },
-  },
-
-  -- Treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "markdown", "markdown_inline" } },
-  },
-
-  -- LSP
-  {
-    "neovim/nvim-lspconfig",
-    opts = { servers = { marksman = {} } },
   },
 
   -- Formatting

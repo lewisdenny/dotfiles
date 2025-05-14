@@ -1,38 +1,4 @@
 return {
-  -- LSP
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        pylsp = {
-          plugins = {
-            jedi_completion = {
-              enabled = true,
-            },
-            pydocstyle = {
-              enabled = false,
-            },
-            flake8 = {
-              enabled = false,
-            },
-            mccabe = {
-              enabled = false,
-            },
-            pycodestyle = {
-              enabled = false,
-            },
-          },
-        },
-      },
-    },
-  },
-
-  -- Treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "python" } },
-  },
-
   -- Formatting
   {
     "stevearc/conform.nvim",

@@ -1,10 +1,4 @@
 return {
-  -- Configure treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "html", "javascript", "typescript" } },
-  },
-
   {
     "stevearc/conform.nvim",
     opts = {

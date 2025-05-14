@@ -1,18 +1,6 @@
 return {
-  -- LSP
-  {
-    "neovim/nvim-lspconfig",
-    opts = { servers = { ansiblels = {} } },
-  },
-
   -- Linter
   -- NOTE: Linting is handled by ansiblels
-
-  -- Treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "yaml" } },
-  },
 
   -- NOTE: Ansibug is not supported by Mason yet
   {

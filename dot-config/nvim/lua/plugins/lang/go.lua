@@ -1,23 +1,4 @@
 return {
-  -- LSP
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        gopls = { settings = { gopls = {
-          completeUnimported = true,
-          usePlaceholders = true,
-        } } },
-      },
-    },
-  },
-
-  -- Treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "go", "gomod", "gosum", "gotmpl", "gowork" } },
-  },
-
   -- FIX: golangcilint isn't working and throwing error codes :/
   -- Linter
   -- {
@@ -60,6 +41,19 @@ return {
 
   -- Configure language plugins
 
+  { -- show golang implements
+    "maxandron/goplements.nvim",
+    ft = "go",
+    opts = {
+      prefix = {
+        interface = "implemented by: ",
+        struct = "implements: ",
+      },
+      display_package = true,
+      highlight = "Goplements",
+    },
+  },
+
   -- {
   --   "ray-x/go.nvim",
   --   enabled = true,
@@ -75,17 +69,4 @@ return {
   --   ft = { "go", "gomod" },
   --   build = ':lua require("go.install").update_all_sync()',
   -- },
-
-  { -- show golang implements
-    "maxandron/goplements.nvim",
-    ft = "go",
-    opts = {
-      prefix = {
-        interface = "implemented by: ",
-        struct = "implements: ",
-      },
-      display_package = true,
-      highlight = "Goplements",
-    },
-  },
 }

@@ -1,17 +1,18 @@
-local dap, dv = require "dap", require "dap-view"
--- auto toggle dap-view when debugging
-dap.listeners.before.attach["dap-view-config"] = function()
-  dv.open()
-end
-dap.listeners.before.launch["dap-view-config"] = function()
-  dv.open()
-end
-dap.listeners.before.event_terminated["dap-view-config"] = function()
-  dv.close()
-end
-dap.listeners.before.event_exited["dap-view-config"] = function()
-  dv.close()
-end
+-- Note: I think this can be removed
+-- local dap, dv = require "dap", require "dap-view"
+-- -- auto toggle dap-view when debugging
+-- dap.listeners.before.attach["dap-view-config"] = function()
+--   dv.open()
+-- end
+-- dap.listeners.before.launch["dap-view-config"] = function()
+--   dv.open()
+-- end
+-- dap.listeners.before.event_terminated["dap-view-config"] = function()
+--   dv.close()
+-- end
+-- dap.listeners.before.event_exited["dap-view-config"] = function()
+--   dv.close()
+-- end
 
 return {
   {
