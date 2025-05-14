@@ -12,12 +12,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 return {
-  -- Ensure tools are installed
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "bash-language-server", "shfmt" } },
-  },
-
   -- Configure Treesitter
   {
     "nvim-treesitter/nvim-treesitter",

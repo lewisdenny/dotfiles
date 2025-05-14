@@ -1,10 +1,4 @@
 return {
-  -- Ensure tools are installed
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "gopls", "goimports", "gofumpt", "golangci-lint", "delve" } },
-  },
-
   -- LSP
   {
     "neovim/nvim-lspconfig",

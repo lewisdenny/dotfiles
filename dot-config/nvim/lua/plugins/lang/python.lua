@@ -1,10 +1,4 @@
 return {
-  -- Ensure tools are installed
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "ruff", "python-lsp-server" } },
-  },
-
   -- LSP
   {
     "neovim/nvim-lspconfig",
@@ -82,7 +76,6 @@ return {
       "neovim/nvim-lspconfig",
       "mfussenegger/nvim-dap",
       "mfussenegger/nvim-dap-python",
-      -- { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
     },
     branch = "regexp",
     opts = {

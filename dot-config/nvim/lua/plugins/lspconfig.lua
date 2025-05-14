@@ -3,10 +3,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- "nvim-telescope/telescope.nvim",
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       "j-hui/fidget.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      "mason-org/mason-lspconfig.nvim",
     },
     opts = {
       -- Note: See `:help lspconfig-all` for a list of all the pre-configured LSPs

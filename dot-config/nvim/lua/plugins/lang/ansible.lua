@@ -1,9 +1,4 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "ansible-lint" } },
-  },
-
   -- LSP
   {
     "neovim/nvim-lspconfig",
@@ -23,7 +18,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
     },
     event = "VeryLazy",
     config = function()

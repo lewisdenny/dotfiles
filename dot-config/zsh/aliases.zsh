@@ -1,6 +1,9 @@
-alias sed="/opt/homebrew/bin/gsed"
-alias grep="/opt/homebrew/bin/ggrep"
-alias make="/opt/homebrew/bin/gmake"
+if which brew 1> /dev/null 2> /dev/null; then
+  alias sed="/opt/homebrew/bin/gsed"
+  alias grep="/opt/homebrew/bin/ggrep"
+  alias make="/opt/homebrew/bin/gmake"
+fi
+
 alias gpf="git push --force"
 alias gs="git status"
 alias gr="git remote -v"

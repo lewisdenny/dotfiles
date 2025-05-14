@@ -1,11 +1,4 @@
---- https://github.com/mrcjkb/rustaceanvim
 return {
-  -- Ensure tools are installed
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "codelldb" } },
-  },
-
   -- LSP for Cargo.toml
   {
     "Saecki/crates.nvim",

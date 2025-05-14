@@ -1,0 +1,46 @@
+---
+vmType: "vz"
+arch: "aarch64"
+
+cpus: 6
+memory: "8GiB"
+disk: "100GiB"
+
+images:
+  - location: "https://mirror.aarnet.edu.au/pub/fedora/linux/releases/42/Cloud/aarch64/images/Fedora-Cloud-Base-Generic-42-1.1.aarch64.qcow2"
+    arch: "aarch64"
+    digest: "sha256:e10658419a8d50231037dc781c3155aa94180a8c7a74e5cac2a6b09eaa9342b7"
+
+mountType: "virtiofs"
+mounts:
+  - location: "~/code"
+    mountPoint: "/home/ldenny/code"
+    writable: true
+
+containerd:
+  system: false
+  user: false
+
+user:
+  home: "/home/{{.User}}"
+  shell: "/bin/zsh"
+
+provision:
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      if ! which zsh 1> /dev/null 2> /dev/null; then dnf install zsh -y; fi
+      if [[ ! -d /Users/ldenny ]]; then mkdir /Users && ln -s /home/ldenny /Users/ldenny; fi
+
+os: "Linux"
+
+ssh:
+  localPort: 60023
+
+rosetta:
+  # Hint: try `softwareupdate --install-rosetta` if Lima gets stuck at `Installing rosetta...`
+  enabled: true
+  binfmt: true
+
+minimumLimaVersion: "0.7.0"

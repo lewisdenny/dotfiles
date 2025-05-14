@@ -1,9 +1,4 @@
 return {
-  -- Ensure tools are installed
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "yaml-language-server" } },
-  },
 
   -- Configure linter
   {
@@ -27,7 +22,7 @@ return {
   {
     "b0o/SchemaStore.nvim",
     lazy = true,
-    version = false, -- last release is way too old
+    version = false, --Note: Last release is way too old
   },
 
   -- correctly setup lspconfig

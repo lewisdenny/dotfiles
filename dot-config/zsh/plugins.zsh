@@ -1,5 +1,3 @@
-# ----- Bat (better cat) -----
-
 export BAT_THEME=tokyonight_night
 
 # Better zsh history

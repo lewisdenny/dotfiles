@@ -1,10 +1,4 @@
 return {
-  -- Ensure tools are installed
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "harper-ls" } },
-  },
-
   -- LSP
   {
     "neovim/nvim-lspconfig",
