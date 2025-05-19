@@ -5,12 +5,6 @@ return {
     opts = { linters_by_ft = { markdown = { "markdownlint-cli2" } } },
   },
 
-  -- Formatting
-  {
-    "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { markdown = { "prettier" } } },
-  },
-
   -- https://github.com/bullets-vim/bullets.vim
   -- When writing a todo list, auto gen the next item upon hitting return key
   {

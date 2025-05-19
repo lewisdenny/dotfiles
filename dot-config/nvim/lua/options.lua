@@ -95,3 +95,6 @@ vim.opt.swapfile = false
 
 -- Disable line wrap
 vim.opt.wrap = false
+
+-- Enable formatting by Default
+vim.g.autoformat = true

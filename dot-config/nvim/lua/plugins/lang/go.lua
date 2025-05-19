@@ -1,15 +1,9 @@
 return {
   -- FIX: golangcilint isn't working and throwing error codes :/
   -- Linter
-  -- {
-  --   "mfussenegger/nvim-lint",
-  --   opts = { linters_by_ft = { go = { "golangcilint" } } },
-  -- },
-
-  -- Formatting
   {
-    "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { go = { "goimports", "gofumpt" } } },
+    "mfussenegger/nvim-lint",
+    opts = { linters_by_ft = { go = { "golangcilint" } } },
   },
 
   -- DAP

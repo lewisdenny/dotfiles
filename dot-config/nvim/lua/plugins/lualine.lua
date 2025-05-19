@@ -19,9 +19,7 @@ return {
           globalstatus = true,
         },
         extensions = {
-          "nvim-tree",
           "lazy",
-          "trouble",
           "toggleterm",
           "mason",
         },

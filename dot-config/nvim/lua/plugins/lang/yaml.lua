@@ -6,12 +6,6 @@ return {
     opts = { linters_by_ft = { yaml = { "yamllint" } } },
   },
 
-  -- Configure formatting
-  {
-    "stevearc/conform.nvim",
-    opts = { formatters_by_ft = { yaml = { "prettier" } } },
-  },
-
   -- yaml schema support
   {
     "b0o/SchemaStore.nvim",

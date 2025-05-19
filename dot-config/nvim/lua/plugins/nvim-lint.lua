@@ -8,9 +8,15 @@ return {
     opts = {
       linters_by_ft = {},
     },
-    -- stylua: ignore
     keys = {
-      { "<leader>l", function() require("lint").try_lint() end, desc = "[L]int file" },
+      {
+        "<leader>l",
+        function()
+          require("fidget").notify("nvim-lint: Running Linter", nil, { name = "ncim-lint", key = "lintid" })
+          require("lint").try_lint()
+        end,
+        desc = "[L]int file",
+      },
     },
     config = function(_, opts)
       -- vim.print(opts)
@@ -23,6 +29,7 @@ return {
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = lint_augroup,
         callback = function()
+          require("fidget").notify("nvim-lint: Running Linter", nil, { name = "ncim-lint", key = "lintid" })
           lint.try_lint()
         end,
       })

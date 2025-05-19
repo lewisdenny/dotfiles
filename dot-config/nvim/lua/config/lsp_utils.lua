@@ -20,8 +20,8 @@ function M.set_keys(client, buffer)
   map("gr", function() Snacks.picker.lsp_references() end, "References", nil, false)
   map("gI", function() Snacks.picker.lsp_implementations() end, "Goto Implementation")
   map("gy", function() Snacks.picker.lsp_type_definitions() end, "Goto T[y]pe Definition")
-  map("<leader>cS", function() Snacks.picker.lsp_symbols() end, "LSP Symbols")
-  map("<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, "LSP Workspace Symbols")
+  map("<leader>cs", function() Snacks.picker.lsp_symbols() end, "LSP Symbols")
+  map("<leader>cS", function() Snacks.picker.lsp_workspace_symbols() end, "LSP Workspace Symbols")
   map("<leader>rn", vim.lsp.buf.rename, "Renames all references to the symbol under the cursor")
   -- stylua: ignore end
 
