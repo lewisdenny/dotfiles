@@ -36,9 +36,9 @@ map({ "n", "v" }, "X", "x", { noremap = true })
 map("n", "dd", '"_dd', { noremap = true })
 map("n", "DD", "dd", { noremap = true })
 
--- Clean up open buffers
-map("n", "<leader>cla", ":w <bar> %bd <bar> e# <bar> bd# <CR>", { desc = "Close all other buffers except current one" })
-
 -- Mouse menu options
 vim.cmd.amenu [[PopUp.Code\ action <Cmd>lua vim.lsp.buf.code_action()<CR>]]
 vim.cmd.amenu [[PopUp.LSP\ Hover <Cmd>lua vvim.lsp.buf.hoverim.lsp.buf.hover()<CR>]]
+
+-- Enforece default behaviour of <C-i>
+map("n", "<C-i>", "<C-i>", { desc = "Switch buffer forward" })

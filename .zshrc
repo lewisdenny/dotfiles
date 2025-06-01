@@ -21,18 +21,25 @@ export ZSH_CONFIG=$HOME/.config/zsh
 # Load env_vars
 [ -f $ZSH_CONFIG/environment_vars.zsh ] && source $ZSH_CONFIG/environment_vars.zsh
 
-# Load general config
-[ -f $ZSH_CONFIG/general.zsh ] && source $ZSH_CONFIG/general.zsh
-
 # Load completeion
 [ -f $ZSH_CONFIG/auto_complete.zsh ] && source $ZSH_CONFIG/auto_complete.zsh
 
 # Load plugins
 [ -f $ZSH_CONFIG/plugins.zsh ] && source $ZSH_CONFIG/plugins.zsh
 
+# Load general config
+[ -f $ZSH_CONFIG/general.zsh ] && source $ZSH_CONFIG/general.zsh
+
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # https://www.dotruby.com/articles/profiling-zsh-setup-with-zprof
 # `time ZSH_DEBUGRC=1 zsh -i -c exit`
-
 if [[ -n "$ZSH_DEBUGRC" ]]; then
   zprof
 fi
+
+# Lima BEGIN
+# Make sure iptables and mount.fuse3 are available
+PATH="$PATH:/usr/sbin:/sbin"
+export PATH
+# Lima END

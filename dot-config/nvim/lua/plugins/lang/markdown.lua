@@ -1,10 +1,4 @@
 return {
-  -- Linter
-  {
-    "mfussenegger/nvim-lint",
-    opts = { linters_by_ft = { markdown = { "markdownlint-cli2" } } },
-  },
-
   -- https://github.com/bullets-vim/bullets.vim
   -- When writing a todo list, auto gen the next item upon hitting return key
   {

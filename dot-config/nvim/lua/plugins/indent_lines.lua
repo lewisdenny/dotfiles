@@ -17,6 +17,7 @@ return {
         enabled = true,
         scope = {
           hl = indent_highlight,
+          underline = true,
         },
         chunk = {
           enabled = true,

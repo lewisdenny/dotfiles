@@ -11,3 +11,8 @@ fi
 
 # Jira-cli config
 export JIRA_EDITOR=nvim
+
+# Allow detecting if inside lima instance
+if [[ $(hostname) == *lima* ]]; then
+  export RUNNING_IN_LIMA=true
+fi

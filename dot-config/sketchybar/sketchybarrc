@@ -1,0 +1,81 @@
+source "$CONFIG_DIR/colors.sh" # Loads all defined colors
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items" # Directory where the items are configured
+FONT="MesloLGM Nerd Font"    # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+PADDINGS=3                   # All paddings use this value (icon, label, background)
+
+##### Bar Appearance #####
+# https://felixkratz.github.io/SketchyBar/config/bar
+
+SB_BAR=(
+  height=60
+  color="$BAR_COLOR"
+  border_width=5
+  margin=5
+  border_color="$BAR_BORDER_COLOR"
+  shadow=off
+  position=left
+  sticky=on
+  topmost=window
+  blur_radius=30
+  padding_right=16
+  padding_left=16
+  display=all
+  y_offset=6
+  corner_radius=8
+  font_smoothing=on
+
+)
+
+##### Changing Defaults #####
+# For a full list of all available item properties see:
+# https://felixkratz.github.io/SketchyBar/config/items
+
+SB_DEFAULT=(
+  updates=when_shown
+  label.font="$FONT:Semibold:13.0"
+  label.color="$LABEL_COLOR"
+  label.padding_left="$PADDINGS"
+  label.padding_right="$PADDINGS"
+  padding_right="$PADDINGS"
+  padding_left="$PADDINGS"
+  background.height=32
+  background.corner_radius=9
+  background.border_width=2
+  background.padding_right=4
+  background.padding_left=4
+  background.corner_radius=6
+)
+
+sketchybar --bar "${SB_BAR[@]}" --default "${SB_DEFAULT[@]}"
+
+##### Adding Left Items #####
+source "$ITEM_DIR/time.sh" left
+
+source "$ITEM_DIR/sep.sh" left
+
+source "$ITEM_DIR/date.sh" left
+
+source "$ITEM_DIR/sep.sh" left
+
+source "$ITEM_DIR/aerospace.sh"
+
+##### Adding Bottom Items #####
+
+source "$ITEM_DIR/volume.sh"
+
+source "$ITEM_DIR/battery.sh"
+
+source "$ITEM_DIR/sep.sh" right
+
+source "$ITEM_DIR/slack.sh" right
+
+source "$ITEM_DIR/signal.sh" right
+
+##### Force all scripts to run the first time (never do this in a script) #####
+sketchybar --update
+
+# Initially set Aerospace workspace
+AEROSPACE_FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
+sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE

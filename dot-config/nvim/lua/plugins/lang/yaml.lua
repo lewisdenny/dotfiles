@@ -1,11 +1,4 @@
 return {
-
-  -- Configure linter
-  {
-    "mfussenegger/nvim-lint",
-    opts = { linters_by_ft = { yaml = { "yamllint" } } },
-  },
-
   -- yaml schema support
   {
     "b0o/SchemaStore.nvim",

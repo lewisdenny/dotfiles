@@ -1,11 +1,4 @@
 return {
-  -- FIX: golangcilint isn't working and throwing error codes :/
-  -- Linter
-  {
-    "mfussenegger/nvim-lint",
-    opts = { linters_by_ft = { go = { "golangcilint" } } },
-  },
-
   -- DAP
   {
     "leoluz/nvim-dap-go",

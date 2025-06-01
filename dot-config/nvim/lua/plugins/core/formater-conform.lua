@@ -15,7 +15,14 @@ return {
         html = { "prettier" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         sh = { "shfmt" },
-        python = { "ruff_fix", "ruff_format" },
+        python = {
+          -- To fix auto-fixable lint errors.
+          "ruff_fix",
+          -- To run the Ruff formatter.
+          "ruff_format",
+          -- To organize the imports.
+          "ruff_organize_imports",
+        },
         markdown = { "prettier" },
         lua = { "stylua" },
         go = { "goimports", "gofumpt" },
@@ -23,6 +30,7 @@ return {
       formatters = { shfmt = { prepend_args = { "-i", "2" } } },
       notify_on_error = true,
       format_on_save = function(bufnr)
+        vim.print "here"
         return require("config.format_utils").format(bufnr)
       end,
     },

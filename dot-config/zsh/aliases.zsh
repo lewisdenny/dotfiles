@@ -14,8 +14,13 @@ alias pj=". pj.sh"
 alias wt=". wt.sh"
 
 # ---- Eza (better ls) -----
-alias ls="eza --color=always --long --hyperlink -git --no-filesize --icons=always --no-time --no-user --no-permissions"
-alias ll="eza --color=always --all --long --git --icons=always --smart-group --group-directories-first"
+# Disable Git in Lima because storage is too slow
+eza_git_arg=""
+if [[ -z "${RUNNING_IN_LIMA}" ]];then eza_git_arg="--git"; fi
+
+alias ls="eza --color=always --long --hyperlink ${eza_git_arg} --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias ll="eza --color=always --all --long ${eza_git_arg} --icons=always --smart-group --group-directories-first"
+
 
 # ---- NeoVim -----
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'

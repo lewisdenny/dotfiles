@@ -1,11 +1,11 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old
+    branch = "main", -- Note: Can be removed once default branch changes to main from master
+    version = false, -- Note: last release is way too old
+    lazy = false, -- Note: This plugin does not support lazy-loading
     build = ":TSUpdate",
-    event = "VeryLazy",
-    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
     opts = {
       ensure_installed = {
         "diff",
@@ -18,6 +18,7 @@ return {
         "gosum",
         "gotmpl",
         "gowork",
+        "regex",
         "lua",
         "luadoc",
         "markdown",
@@ -35,12 +36,20 @@ return {
         "javascript",
         "typescript",
       },
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
     },
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      require("nvim-treesitter").setup(opts)
+      require("nvim-treesitter").install(opts.ensure_installed)
+      vim.api.nvim_create_autocmd("FileType", {
+        group = init,
+        callback = function(args)
+          local filetype = args.match
+          local lang = vim.treesitter.language.get_lang(filetype)
+          if vim.treesitter.language.add(lang) then
+            vim.treesitter.start()
+          end
+        end,
+      })
     end,
   },
 }

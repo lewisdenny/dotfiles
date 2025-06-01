@@ -1,7 +1,10 @@
 local M = {}
 
 local disable_lspfallback = { "c", "cpp" }
-local disable_rangeformat = { "lua" }
+local disable_rangeformat = {
+  "lua",
+  "python", -- Breaks import formatting
+}
 local default_format_on_save_opts = {
   timeout_ms = 3000,
   quiet = false, -- not recommended to change

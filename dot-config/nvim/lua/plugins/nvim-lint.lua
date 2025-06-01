@@ -6,14 +6,24 @@ return {
     lazy = true,
     event = "VeryLazy",
     opts = {
-      linters_by_ft = {},
+      linters_by_ft = {
+        yaml = { "yamllint" },
+        markdown = { "markdownlint-cli2" },
+        go = { "golangcilint" },
+        python = { "ruff" },
+      },
     },
     keys = {
       {
         "<leader>l",
         function()
-          require("fidget").notify("nvim-lint: Running Linter", nil, { name = "ncim-lint", key = "lintid" })
-          require("lint").try_lint()
+          local lint = require "lint"
+          local linters = lint.linters_by_ft[vim.bo.filetype]
+
+          if linters then
+            require("fidget").notify("nvim-lint: Running Linter", nil, { name = "ncim-lint", key = "lintid" })
+            lint.try_lint()
+          end
         end,
         desc = "[L]int file",
       },
@@ -24,13 +34,17 @@ return {
       lint.linters_by_ft = opts.linters_by_ft
 
       -- Create autocommand which carries out the actual linting
-      -- on the specified events.
+      -- on the specified events if a linter is configured for the filetype.
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
         group = lint_augroup,
         callback = function()
-          require("fidget").notify("nvim-lint: Running Linter", nil, { name = "ncim-lint", key = "lintid" })
-          lint.try_lint()
+          local linters = lint.linters_by_ft[vim.bo.filetype]
+
+          if linters then
+            require("fidget").notify("nvim-lint: Running Linter", nil, { name = "ncim-lint", key = "lintid" })
+            lint.try_lint()
+          end
         end,
       })
 

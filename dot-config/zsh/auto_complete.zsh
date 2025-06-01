@@ -1,6 +1,11 @@
 source <(fzf --zsh)
 
-autoload -U +X compinit && compinit
+autoload -U +X compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
 autoload -U +X bashcompinit && bashcompinit
 
 # gotask autocompletion
