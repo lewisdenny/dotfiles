@@ -12,6 +12,12 @@ export ZSH_CONFIG=$HOME/.config/zsh
 # Load secrets
 [ -f $ZSH_CONFIG/secrets.zsh ] && source $ZSH_CONFIG/secrets.zsh || echo "Secrets file missing"
 
+# Load any custom config
+setopt NULL_GLOB
+for config_file in "$ZSH_CONFIG"/custom/*.zsh; do
+    [ -f "$config_file" ] && source "$config_file"
+done
+
 # Load aliases
 [ -f $ZSH_CONFIG/aliases.zsh ] && source $ZSH_CONFIG/aliases.zsh
 

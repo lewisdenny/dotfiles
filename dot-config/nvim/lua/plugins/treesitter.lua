@@ -1,6 +1,19 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
+        -- stylua: ignore
+        keys = {
+          { "af", function() require "nvim-treesitter-textobjects.select".select_textobject("@function.outer", "textobjects") end, mode = {"v"}, desc = "function" },
+          { "if", function() require "nvim-treesitter-textobjects.select".select_textobject("@function.inner", "textobjects") end, mode = {"v"}, desc = "function" },
+          { "ac", function() require "nvim-treesitter-textobjects.select".select_textobject("@class.outer", "textobjects") end, mode = {"v"}, desc = "class" },
+          { "ic", function() require "nvim-treesitter-textobjects.select".select_textobject("@class.inner", "textobjects") end, mode = {"v"}, desc = "class" },
+        },
+      },
+    },
     branch = "main", -- Note: Can be removed once default branch changes to main from master
     version = false, -- Note: last release is way too old
     lazy = false, -- Note: This plugin does not support lazy-loading

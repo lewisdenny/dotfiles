@@ -39,5 +39,3 @@ _________________________   _________________________
 > Ruff LSP would be prefered but it doesn't support organizing imports yet
 > so rather than splitting formatting in LSP and Conform just use conform
 > for now.
-> [!WARNING]
-> Codeactions not working with basedpyright

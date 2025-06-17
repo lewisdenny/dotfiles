@@ -27,11 +27,9 @@ return {
         { "G", function () dap.run_to_cursor() end, { desc = "Run to Cursor" } },
         { "r", function () dap.run_last() end, { desc = "Run last target" } },
         { "R", function () dap.restart() end, { desc = "Restart" } },
+        { "S", function () dap.terminate() end, { desc = "Terminate DAP" } },
 
-        { "<Esc>", nil, { exit = true } },
-        { "q", nil, { exit = true } },
-        { "jk", nil, { exit = true } },
-        { "x", function () dap.terminate() end, { exit = true } },
+        { "x", nil, { exit = true, desc = "Exit" } },
       },
     }
   end,
