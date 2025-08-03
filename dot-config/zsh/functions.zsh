@@ -1,5 +1,4 @@
-
-# Basic fuction to quickly record intersting words I come across.
+# Basic function to quickly record interesting words I come across.
 interesting-word() {
   local INFILE="$ZSH_CONFIG/interesting-words.txt"
 
@@ -36,3 +35,13 @@ interesting-word() {
     fi
   fi
 }
+
+# Launch Neovim nightly
+nn() {
+  local vimRunTime="/Users/ldenny/code/github.com/neovim/neovim/runtime"
+  local nvimAppName="nvim"
+  local nvimNightlyBin="$HOME/code/github.com/neovim/neovim/build/bin/nvim"
+
+  VIMRUNTIME=${vimRunTime} NVIM_APPNAME=${nvimAppName} $nvimNightlyBin
+}
+

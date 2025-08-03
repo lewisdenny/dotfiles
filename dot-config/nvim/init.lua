@@ -1,33 +1,36 @@
--- Set <space> as the leader key
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+-- Enable experimental Lua module loader that reduces
+-- startup time by caching byte-compiled Lua files.
+vim.loader.enable()
 
--- Bootstrap lazy.nvim plugin manager
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system { "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath }
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
+-- Enable experimental “extended UI” (extui) features
+require("vim._extui").enable({})
+vim.o.cmdheight = 0
 
-require "options"
-require "config.lazy"
+-- Set theme:
+require("core.onedarkpro")
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "VeryLazy",
-  callback = function()
-    require "commands"
-    require "keymaps"
-    require "diagnostics"
-    require "capabilities"
-  end,
+-- Create empty table assigned to the global variable G
+-- to be used as a global namespace.
+_G.G = {}
+
+-- Load core files on startup
+require("core.options")
+require("core.autocommands")
+require("core.keymaps")
+require("core.statusline")
+require("core.auto-session") -- Requires to run early on VimEnter
+require("core.blink")
+require("core.lsp").setup({
+  "gopls",
+  "golangci-lint-langserver",
+  "lua_ls",
 })
+
+-- Lazy load plugins
+local groups = {
+  vim.api.nvim_get_runtime_file("lua/plugins/*.lua", true),
+  vim.api.nvim_get_runtime_file("lua/core/std.lua", true),
+  vim.api.nvim_get_runtime_file("lua/languages/*.lua", true),
+}
+
+require("core.loader").start(groups)

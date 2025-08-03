@@ -1,68 +1,56 @@
-return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        branch = "main",
-        -- stylua: ignore
-        keys = {
-          { "af", function() require "nvim-treesitter-textobjects.select".select_textobject("@function.outer", "textobjects") end, mode = {"v"}, desc = "function" },
-          { "if", function() require "nvim-treesitter-textobjects.select".select_textobject("@function.inner", "textobjects") end, mode = {"v"}, desc = "function" },
-          { "ac", function() require "nvim-treesitter-textobjects.select".select_textobject("@class.outer", "textobjects") end, mode = {"v"}, desc = "class" },
-          { "ic", function() require "nvim-treesitter-textobjects.select".select_textobject("@class.inner", "textobjects") end, mode = {"v"}, desc = "class" },
-        },
+vim.pack.add {
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+  "https://github.com/Wansmer/treesj",
+}
+
+require("nvim-treesitter.configs").setup {
+  auto_install = true,
+  highlight = {
+    enable = true,
+  }
+}
+
+local swap = require("nvim-treesitter.textobjects.swap")
+vim.keymap.set("n", "{", function() swap.swap_previous("@parameter.inner") end)
+vim.keymap.set("n", "}", function() swap.swap_next("@parameter.inner") end)
+
+require("nvim-treesitter.configs").setup {
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+        ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
       },
+      include_surrounding_whitespace = true,
     },
-    branch = "main", -- Note: Can be removed once default branch changes to main from master
-    version = false, -- Note: last release is way too old
-    lazy = false, -- Note: This plugin does not support lazy-loading
-    build = ":TSUpdate",
-    cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
-    opts = {
-      ensure_installed = {
-        "diff",
-        "query",
-        "vim",
-        "vimdoc",
-        "yaml",
-        "go",
-        "gomod",
-        "gosum",
-        "gotmpl",
-        "gowork",
-        "regex",
-        "lua",
-        "luadoc",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "rust",
-        "ron",
-        "bash",
-        "vue",
-        "css",
-        "javascript",
-        "typescript",
-        "html",
-        "yaml",
-        "javascript",
-        "typescript",
-      },
+    move = {
+      enable = true,
+      goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+      goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+      goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+      goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
     },
-    config = function(_, opts)
-      require("nvim-treesitter").setup(opts)
-      require("nvim-treesitter").install(opts.ensure_installed)
-      vim.api.nvim_create_autocmd("FileType", {
-        group = init,
-        callback = function(args)
-          local filetype = args.match
-          local lang = vim.treesitter.language.get_lang(filetype)
-          if vim.treesitter.language.add(lang) then
-            vim.treesitter.start()
-          end
-        end,
-      })
-    end,
   },
 }
+
+local tsj = require("treesj")
+
+tsj.setup {
+  max_join_length = 1000000,
+  use_default_keymaps = false,
+}
+
+vim.keymap.set("n", "gs", function() tsj.toggle() end, { desc = "Toggle split/join" })
+vim.keymap.set("n", "gS", function() tsj.toggle { split = { recursive = true } } end, { desc = "Toggle split/join (recursive)" })
+
+-- Options
+
+-- internal flag that, when set to true, forces Tree-sitter parsing to run synchronously
+-- which can help with flickering issues.
+vim.g._ts_force_sync_parsing = false
