@@ -30,7 +30,7 @@ return {
       formatters = { shfmt = { prepend_args = { "-i", "2" } } },
       notify_on_error = true,
       format_on_save = function(bufnr)
-        vim.print "here"
+        -- vim.print "here"
         return require("config.format_utils").format(bufnr)
       end,
     },

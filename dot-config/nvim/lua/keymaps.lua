@@ -40,5 +40,5 @@ map("n", "DD", "dd", { noremap = true })
 vim.cmd.amenu [[PopUp.Code\ action <Cmd>lua vim.lsp.buf.code_action()<CR>]]
 vim.cmd.amenu [[PopUp.LSP\ Hover <Cmd>lua vvim.lsp.buf.hoverim.lsp.buf.hover()<CR>]]
 
--- Enforece default behaviour of <C-i>
+-- Enforce default behaviour of <C-i>
 map("n", "<C-i>", "<C-i>", { desc = "Switch buffer forward" })

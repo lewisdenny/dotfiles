@@ -52,11 +52,11 @@ return {
 
         -- These two functions allow the next and prev operations to be dot repeatable
         _G._next_hunk_func = function()
-          gitsigns.nav_hunk "next"
+          gitsigns.nav_hunk("next", { preview = true, navigation_message = false })
         end
 
         _G.previous_hunk_func = function()
-          gitsigns.nav_hunk "prev"
+          gitsigns.nav_hunk("prev", { wrap = true, preview = true, navigation_message = false })
         end
 
         -- stylua: ignore start

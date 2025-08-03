@@ -21,7 +21,7 @@ return {
           local linters = lint.linters_by_ft[vim.bo.filetype]
 
           if linters then
-            require("fidget").notify("nvim-lint: Running Linter", nil, { name = "ncim-lint", key = "lintid" })
+            require("fidget").notify("nvim-lint: Running Linter", nil, { name = "nvim-lint", key = "lintid" })
             lint.try_lint()
           end
         end,

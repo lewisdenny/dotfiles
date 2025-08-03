@@ -3,6 +3,9 @@ if [[ -n "$ZSH_DEBUGRC" ]]; then
   zmodload zsh/zprof
 fi
 
+# Clear "Last Login" first line message on Macos
+printf '\33c\e[3J'
+
 # Set the path of zsh configuration directory
 export ZSH_CONFIG=$HOME/.config/zsh
 
