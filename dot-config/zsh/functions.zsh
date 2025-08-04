@@ -36,12 +36,17 @@ interesting-word() {
   fi
 }
 
-# Launch Neovim nightly
-nn() {
-  local vimRunTime="/Users/ldenny/code/github.com/neovim/neovim/runtime"
-  local nvimAppName="nvim"
-  local nvimNightlyBin="$HOME/code/github.com/neovim/neovim/build/bin/nvim"
+# Launch Neovim Nightly build with custom runtime and app name
+vv() {
+  local vim_runtime="$HOME/code/github.com/neovim/neovim/runtime"
+  local nvim_app_name="nvim"
+  local nvim_nightly_bin="$HOME/code/github.com/neovim/neovim/build/bin/nvim"
 
-  VIMRUNTIME=${vimRunTime} NVIM_APPNAME=${nvimAppName} $nvimNightlyBin
+  if [[ ! -x "$nvim_nightly_bin" ]]; then
+    echo "Error: Neovim nightly binary not found or not executable at $nvim_nightly_bin" >&2
+    return 1
+  fi
+
+  VIMRUNTIME="$vim_runtime" NVIM_APPNAME="$nvim_app_name" "$nvim_nightly_bin" "$@"
 }
 

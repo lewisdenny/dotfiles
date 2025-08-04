@@ -1,5 +1,5 @@
 vim.pack.add({
-  "nvim-tree/nvim-web-devicons",
+  "https://github.com/nvim-tree/nvim-web-devicons",
   "https://github.com/sindrets/diffview.nvim",
 })
 

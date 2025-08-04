@@ -2,3 +2,5 @@ dot-config/go/*
 dot-config/zsh/secrets.zsh
 dot-config/zsh/custom
 dot-config/dlv/*
+startuptime.log
+dot-config/zsh/interesting-words.txt

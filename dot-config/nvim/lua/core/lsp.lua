@@ -39,8 +39,6 @@ function M.lsp_highlight_document(client, bufnr)
   })
 end
 
----@param client vim.lsp.Client
----@param bufnr number
 function M.lsp_code_lens_refresh(client, bufnr)
   if not client:supports_method(methods.textDocument_codeLens, bufnr) then
     return
@@ -80,8 +78,24 @@ function M.set_lsp_buffer_keybindings(client, bufnr)
   map("gd", fzf.lsp_definitions)
   map("gr", fzf.lsp_references)
   map("go", fzf.lsp_code_actions)
-  map("gi", fzf.lsp_implementations, "lsp implementations" )
-  map("gy", fzf.lsp_typedefs, "lsp type definitions" )
+  map("gi", fzf.lsp_implementations, "lsp implementations")
+  map("gy", fzf.lsp_typedefs, "lsp type definitions")
+end
+
+function M.lazyLoadFastActions(client, bufnr)
+  local map = function(keys, func, desc, mode, nowait)
+    mode = mode or "n"
+    nowait = nowait or false
+    desc = desc or ""
+    vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+  end
+
+  if client:supports_method("textDocument/codeAction") then
+    local fastAction = require("fastaction")
+
+    fastAction.setup({})
+    map("<leader>a", fastAction.code_action, "FastAction")
+  end
 end
 
 function M.override_floating_preview()
@@ -187,6 +201,7 @@ function M.setup(servers)
         M.lsp_highlight_document,
         M.lsp_code_lens_refresh,
         M.set_lsp_buffer_keybindings,
+        M.lazyLoadFastActions,
       })(client, event.buf)
 
       if client:supports_method("textDocument/foldingRange") then

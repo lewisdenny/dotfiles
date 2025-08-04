@@ -20,10 +20,14 @@ require("core.keymaps")
 require("core.statusline")
 require("core.auto-session") -- Requires to run early on VimEnter
 require("core.blink")
+require("core.tiny-inline-diagnostic")
 require("core.lsp").setup({
   "gopls",
   "golangci-lint-langserver",
   "lua_ls",
+  "bashls",
+  "ruff",
+  "yamlls",
 })
 
 -- Lazy load plugins

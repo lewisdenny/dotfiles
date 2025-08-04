@@ -6,7 +6,7 @@ vim.g.maplocalleader = " "
 vim.opt.autowriteall = true
 
 -- Set spell opts
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelllang = "en_au"
 
 -- Make tabs take up the space of four spaces
@@ -92,11 +92,6 @@ vim.diagnostic.config({
   },
 })
 
--- Set spell opts
-vim.opt.spell = true
-vim.opt.spelllang = "en_au"
-
-
 -- https://www.reddit.com/r/neovim/comments/1jmqd7t/sorry_ufo_these_7_lines_replaced_you/
 -- Nice and simple folding:
 vim.o.foldenable = true
@@ -107,7 +102,34 @@ vim.o.foldtext = ""
 vim.opt.foldcolumn = "0"
 vim.opt.fillchars:append({ fold = " " })
 
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Enables loading .nvimrc files for per project configuration
 vim.opt.exrc = true
+
+-- vim.diagnostic.config({
+--   severity_sort = true,
+--   float = { border = "rounded", source = "if_many" },
+--   underline = { severity = vim.diagnostic.severity.ERROR },
+--   signs = vim.g.have_nerd_font and {
+--     text = {
+--       [vim.diagnostic.severity.ERROR] = "󰅚 ",
+--       [vim.diagnostic.severity.WARN] = "󰀪 ",
+--       [vim.diagnostic.severity.INFO] = "󰋽 ",
+--       [vim.diagnostic.severity.HINT] = "󰌶 ",
+--     },
+--   } or {},
+--   virtual_text = {
+--     source = "if_many",
+--     spacing = 2,
+--     format = function(diagnostic)
+--       local diagnostic_message = {
+--         [vim.diagnostic.severity.ERROR] = diagnostic.message,
+--         [vim.diagnostic.severity.WARN] = diagnostic.message,
+--         [vim.diagnostic.severity.INFO] = diagnostic.message,
+--         [vim.diagnostic.severity.HINT] = diagnostic.message,
+--       }
+--       return diagnostic_message[diagnostic.severity]
+--     end,
+--   },
+-- })
