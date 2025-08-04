@@ -38,9 +38,41 @@ interesting-word() {
 
 # Launch Neovim Nightly build with custom runtime and app name
 vv() {
-  local vim_runtime="$HOME/code/github.com/neovim/neovim/runtime"
+  # set -e  # Exit immediately if a command exits with a non-zero status
+
+  local repo="$HOME/code/github.com/neovim/neovim"
+  local vim_runtime="$repo/runtime"
   local nvim_app_name="nvim"
-  local nvim_nightly_bin="$HOME/code/github.com/neovim/neovim/build/bin/nvim"
+  local nvim_nightly_bin="$repo/build/bin/nvim"
+  local sha_file="$HOME/neovimsha"
+
+  if [[ ! -d "$repo/.git" ]]; then
+    echo "Error: Neovim git repo not found at $repo" >&2
+    return 1
+  fi
+
+  local skip_update=0
+  if [[ -e "$sha_file" ]]; then
+    if find "$sha_file" -type f -newermt "$(date +%Y-%m-%d)" | grep -q .; then
+      echo "Update skipped: $sha_file modified today."
+      skip_update=1
+    fi
+  fi
+
+  if [[ "$skip_update" -eq 0 ]]; then
+    if nc -zw1 github.com 443; then
+      pushd "$repo"
+      git fetch origin
+      if ! git diff --quiet HEAD..origin/$(git rev-parse --abbrev-ref HEAD); then
+        git rev-parse HEAD > "$sha_file"
+        git pull --ff-only origin "$(git rev-parse --abbrev-ref HEAD)"
+        make CMAKE_BUILD_TYPE=Release
+      fi
+      popd
+    else
+      echo "Warning: github.com not reachable, skipping update." >&2
+    fi
+  fi
 
   if [[ ! -x "$nvim_nightly_bin" ]]; then
     echo "Error: Neovim nightly binary not found or not executable at $nvim_nightly_bin" >&2

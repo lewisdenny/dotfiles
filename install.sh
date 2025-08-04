@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-stow --dotfiles -t $HOME .
+mkdir -p "$HOME/.local/bin"
+mkdir -p "$HOME/.local/share"
+mkdir -p "$HOME/.config"
+
+stow --dotfiles -t "$HOME" .
