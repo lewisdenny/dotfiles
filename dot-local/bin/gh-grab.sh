@@ -8,7 +8,7 @@ validate_github_pr_url() {
   local url="$1"
 
   # Regex to match the specific GitHub repo format
-  local regex='^git@github\.com:[a-zA-Z0-9_-]+\/[a-zA-Z0-9_.]+\.git$'
+  local regex='^git@github\.com:[a-zA-Z0-9_-]+\/[a-zA-Z0-9_.-]+\.git$'
   if [[ "$url" =~ $regex ]]; then
     echo "$url"
     return 0
