@@ -29,5 +29,9 @@ export PATH="$HOME/go/bin:/opt/homebrew/opt/node@20/bin:$PATH"
 # Add Rust Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Add Go Install
+# Add Go Install path
 export PATH="$HOME/go/bin/:$PATH"
+
+# Add local bin to path
+export PATH="$HOME/.local/bin/:$PATH"
+

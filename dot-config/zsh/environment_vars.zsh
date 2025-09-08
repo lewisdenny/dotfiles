@@ -16,3 +16,9 @@ export JIRA_EDITOR=nvim
 if [[ $(hostname) == *lima* ]]; then
   export RUNNING_IN_LIMA=true
 fi
+
+# code path
+export CODE_PATH=$HOME/code
+
+# dotfiles path
+export DOTFILE_PATH=$CODE_PATH/dotfiles

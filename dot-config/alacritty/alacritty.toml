@@ -1,17 +1,19 @@
+# Note: No ligature support sucks
 [general]
 import = ["onedarkpro-onedark.toml"]
+
 [window]
-# decorations="Buttonless"
-decorations="None"
-# decorations="Transparent"
-# opacity=0.1
-# blur=true
+# Note: Buttonless is slightly better than None as you get rounded windows
+# "Full" | "None" | "Transparent" | "Buttonless"
+decorations="Buttonless"
 option_as_alt="Both"
 padding = { x = 0, y = 0 }
+
 [scrolling]
 history=100000
+
 [font]
-size = 16
+size = 18
 
 [font.normal]
 family = "Maple Mono NF"
@@ -22,3 +24,5 @@ action = "SpawnNewInstance"
 key = "Return"
 mods = "Control|Shift"
 
+# Note: man alacritty-bindings for default bindings
+# ctl + shift + space -> enter VI mode

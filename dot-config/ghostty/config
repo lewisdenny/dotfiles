@@ -1,6 +1,6 @@
 theme = onedarkpro_onedark_vivid
 
-font-family = Maple Mono Mono NF
+font-family = Maple Mono NF
 font-family-italic = Maple Mono NF
 font-family-bold-italic = Maple Mono NF
 font-size = 14
@@ -16,5 +16,7 @@ clipboard-write = allow
 quick-terminal-position = center
 
 # Keybindings
-# grave means backtick like `
+# Note: grave means backtick like `
+# Note: glabal is needed her to launch quick terminal
+#       when Ghostty isn't in focus
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
