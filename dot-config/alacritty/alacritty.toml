@@ -8,6 +8,7 @@ import = ["onedarkpro-onedark.toml"]
 decorations="Buttonless"
 option_as_alt="Both"
 padding = { x = 0, y = 0 }
+dynamic_padding = true
 
 [scrolling]
 history=100000
