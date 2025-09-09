@@ -5,7 +5,15 @@ export MANWIDTH=999
 
 # vi mode
 bindkey -v
+bindkey "^A" vi-beginning-of-line
+bindkey "^E" vi-end-of-line
 export KEYTIMEOUT=1
+
+export EDITOR=vv
+autoload -U edit-command-line
+zle -N edit-command-line
+# Pressing "e" in vi mode will open the prompt in $EDITOR
+bindkey -M vicmd 'e' edit-command-line
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char

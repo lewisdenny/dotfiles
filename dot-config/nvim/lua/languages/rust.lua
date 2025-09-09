@@ -1,5 +1,3 @@
-vim.lsp.enable("rust_analyzer")
-
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#ccrust-via-lldb-vscode
 
 vim.dap.adapters.lldb = {

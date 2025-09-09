@@ -1,23 +1,25 @@
-vim.pack.add {
+vim.pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/lewis6991/gitsigns.nvim",
-}
+})
 
 local gitsigns = require("gitsigns")
 
-gitsigns.setup {
+gitsigns.setup({
   numhl = true,
+  linehl = false,
   word_diff = false,
+  attach_to_untracked = true,
   current_line_blame = true,
   current_line_blame_opts = {
+    virt_text_pos = "right_align", -- 'eol' | 'overlay' | 'right_align'
     delay = 500,
   },
+  count_chars = { "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", ["+"] = ">" },
   signs = {
-    add = { text = "+" },
-    change = { text = "~" },
-    delete = { text = "_" },
-    topdelete = { text = "‾" },
-    changedelete = { text = "~" },
+    delete = { show_count = true },
+    topdelete = { show_count = true },
+    changedelete = { show_count = true },
   },
   on_attach = function(bufnr)
     -- map is a helper function
@@ -54,4 +56,4 @@ gitsigns.setup {
     map("v", "<leader>hr", function() gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" } end, { desc = "git [r]eset selected lines" })
     -- stylua: ignore end
   end,
-}
+})

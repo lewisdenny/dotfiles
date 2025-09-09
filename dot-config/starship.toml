@@ -110,7 +110,7 @@ truncation_symbol = "…/"
 
 [cmd_duration]
 style = "bg:color_cyan"
-format = '[[ ⏱ $duration ](fg:syntax_bg bg:color_cyan)]($style)'
+format = '[[ 󱦟 $duration ](fg:syntax_bg bg:color_cyan)]($style)'
 #Note: Can't display duration in ms only, prints like 2s11ms :/
 show_milliseconds = true
 

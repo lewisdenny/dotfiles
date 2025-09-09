@@ -1,10 +1,8 @@
-vim.pack.add {
-  "https://github.com/okuuva/auto-save.nvim",
-}
+vim.pack.add({ "https://github.com/okuuva/auto-save.nvim" })
 
 local autosave = require("auto-save")
 
-autosave.setup {
+autosave.setup({
   -- start auto-save when the plugin is loaded
   enabled = true,
 
@@ -20,4 +18,4 @@ autosave.setup {
   -- if set to `nil` then no specific condition is applied
   -- Could be used to disable auto-save per project or filetype etc.
   condition = nil,
-}
+})

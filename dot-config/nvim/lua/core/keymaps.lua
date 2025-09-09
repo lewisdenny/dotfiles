@@ -19,12 +19,13 @@ map("n", "<leader>y", "<cmd>%y+<CR>", { desc = "Yank whole file" })
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
 -- Change the annoying cut behaviour but allow it via shift
-map({ "n", "v" }, "d", '"_d', { noremap = true })
-map({ "n", "v" }, "D", "d", { noremap = true })
-map({ "n", "v" }, "x", '"_x', { noremap = true })
-map({ "n", "v" }, "X", "x", { noremap = true })
+map({ "n", "x" }, "d", '"_d', { noremap = true })
+map({ "n", "x" }, "D", "d", { noremap = true })
+map({ "n", "x" }, "x", '"_x', { noremap = true })
+map({ "n", "x" }, "X", "x", { noremap = true })
 map("n", "dd", '"_dd', { noremap = true })
 map("n", "DD", "dd", { noremap = true })
+map({ "n", "x" }, "p", "P", { noremap = true })
 
 -- Mouse menu options
 vim.cmd.amenu [[PopUp.Code\ action <Cmd>lua vim.lsp.buf.code_action()<CR>]]
@@ -51,7 +52,6 @@ map("n", "<leader>lh", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggle lsp inlay hints" })
 
--- lua is so powerful damn... I love closures
 map({ "n", "t" }, "<C-t>", (function()
   local buf, win = nil, nil
   local was_insert = true
@@ -85,11 +85,6 @@ map({ "n", "t" }, "<C-t>", (function()
 end)(), { desc = "Toggle float terminal" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 map("n", "<leader>rn", vim.lsp.buf.rename)

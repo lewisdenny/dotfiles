@@ -7,7 +7,7 @@ require("vim._extui").enable({})
 vim.o.cmdheight = 0
 
 -- Set theme:
-require("core.onedarkpro")
+require("themes.vague")
 
 -- Create empty table assigned to the global variable G
 -- to be used as a global namespace.

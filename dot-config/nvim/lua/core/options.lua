@@ -9,9 +9,6 @@ vim.opt.autowriteall = true
 vim.opt.spell = false
 vim.opt.spelllang = "en_au"
 
--- Make tabs take up the space of four spaces
-vim.opt.tabstop = 4
-
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -30,6 +27,8 @@ vim.opt.scrolloff = 5
 vim.opt.mouse = "a"
 
 -- Indents settings
+--
+-- Make tabs take up the space of four spaces
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true

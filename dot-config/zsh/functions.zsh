@@ -36,7 +36,13 @@ interesting-word() {
   fi
 }
 
-# Launch Neovim Nightly build with custom runtime and app name
+# vv: Update and run a nightly Neovim build
+#
+# This function checks for a local Neovim git repository, optionally updates it
+# if the source has changed and a daily update hasn't already occurred, then
+# builds Neovim from source. It only prints informational messages if the DEBUG
+# environment variable is set to true. Finally, it runs the built nightly Neovim
+# binary with the provided arguments.
 vv() {
   # set -e  # Exit immediately if a command exits with a non-zero status
 
@@ -44,7 +50,9 @@ vv() {
   local vim_runtime="$repo/runtime"
   local nvim_app_name="nvim"
   local nvim_nightly_bin="$repo/build/bin/nvim"
-  local sha_file="$HOME/neovimsha"
+  local sha_file="/tmp/nvim_sha"
+  local debug=${DEBUG:-false}
+  local build_container="quay.io/fedora/fedora-minimal:41"
 
   if [[ ! -d "$repo/.git" ]]; then
     echo "Error: Neovim git repo not found at $repo" >&2
@@ -54,19 +62,29 @@ vv() {
   local skip_update=0
   if [[ -e "$sha_file" ]]; then
     if find "$sha_file" -type f -newermt "$(date +%Y-%m-%d)" | grep -q .; then
-      echo "Update skipped: $sha_file modified today."
+      [[ "$debug" == "true" ]] && echo "Update skipped: $sha_file modified today."
       skip_update=1
     fi
   fi
 
   if [[ "$skip_update" -eq 0 ]]; then
-    if nc -zw1 github.com 443; then
+    if nc -zw1 github.com 443 >& /dev/null; then
       pushd "$repo"
       git fetch origin
-      if ! git diff --quiet HEAD..origin/$(git rev-parse --abbrev-ref HEAD); then
+      if git diff --quiet HEAD..origin/$(git rev-parse --abbrev-ref HEAD); then
+        if [[ -x "$nvim_nightly_bin" ]]; then
+          mv "$nvim_nightly_bin" "$nvim_nightly_bin"-old
+        fi
         git rev-parse HEAD > "$sha_file"
         git pull --ff-only origin "$(git rev-parse --abbrev-ref HEAD)"
-        make CMAKE_BUILD_TYPE=Release
+        if uname != "Darwin"; then
+          podman run --rm -it -v "$PWD:/workdir" \
+            -w /workdir \
+            "$build_container" \
+            bash -c 'microdnf install --nogpgcheck -y ninja-build cmake gcc make gettext curl glibc-gconv-extra git && make CMAKE_BUILD_TYPE=Release'
+        else
+          make CMAKE_BUILD_TYPE=Release
+        fi
       fi
       popd
     else

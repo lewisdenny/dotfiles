@@ -3,7 +3,15 @@ vim.pack.add({
   "https://github.com/nvim-lualine/lualine.nvim",
 })
 
--- local hydra_statusline = require "hydra.statusline"
+-- Track DebugMode status
+local dmode_enabled = false
+vim.api.nvim_create_autocmd("User", {
+  pattern = "DebugModeChanged",
+  callback = function(args)
+    dmode_enabled = args.data.enabled
+  end,
+})
+
 local ll = require("lualine")
 
 ll.setup({
@@ -29,20 +37,19 @@ ll.setup({
         "mode",
         " ",
         { gui = "bold" },
-        -- "mode",
-        -- fmt = function(res)
-        --   local hydra_active = hydra_statusline.is_active()
-        --   return hydra_active and " " .. hydra_statusline.get_name() or " " .. res
-        -- end,
-        -- color = function(_)
-        --   if hydra_statusline.is_active() then
-        --     if hydra_statusline.get_name() == "DEBUG" then
-        --       return { bg = "#e06c75", gui = "bold" }
-        --     end
-        --   else
-        --     return { gui = "bold" }
-        --   end
-        -- end,
+        "mode",
+        fmt = function()
+          return dmode_enabled and "  DEBUG " or " "
+        end,
+        color = function()
+          if dmode_enabled then
+            if require("dap").status() ~= "" then
+              return { bg = "#e06c75", gui = "bold" }
+            end
+          else
+            return { gui = "bold" }
+          end
+        end,
       },
     },
     lualine_b = { "branch", "diff", "diagnostics" },
