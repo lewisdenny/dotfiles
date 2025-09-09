@@ -6,7 +6,7 @@
 #
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title New Terminal Window
+# @raycast.title New iTerm Window
 # @raycast.mode silent
 #
 # Optional parameters:
