@@ -1,6 +1,6 @@
 # Note: No ligature support sucks
 [general]
-import = ["onedarkpro-onedark.toml"]
+import = ["./carbonfox.toml"]
 
 [window]
 # Note: Buttonless is slightly better than None as you get rounded windows

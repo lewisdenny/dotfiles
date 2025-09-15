@@ -12,15 +12,10 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
-local custom_onedark = require("lualine.themes.onedark_vivid")
-local ikea_yellow = "#ffd800" -- Thanks Ikea
-custom_onedark.normal.a.bg = ikea_yellow
-
 local ll = require("lualine")
 
 ll.setup({
   options = {
-    theme = custom_onedark,
     disabled_filetypes = {
       -- https://github.com/igorlfs/nvim-dap-view/issues/36
       winbar = {
