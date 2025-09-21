@@ -2,6 +2,7 @@ if which brew 1> /dev/null 2> /dev/null; then
   alias sed="/opt/homebrew/bin/gsed"
   alias grep="/opt/homebrew/bin/ggrep"
   alias make="/opt/homebrew/bin/gmake"
+  alias stat="/opt/homebrew/bin/gstat"
 fi
 
 alias gpf="git push --force"
@@ -34,3 +35,7 @@ alias quarantine-remove='xattr -r -d com.apple.quarantine'
 # jira-cli alias
 alias jil='jira issue list -q "assignee = currentUser() AND status != closed"'
 alias jc='jira issue comment add'
+
+# K8s
+alias k=kubectl
+

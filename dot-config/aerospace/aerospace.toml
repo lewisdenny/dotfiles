@@ -85,6 +85,7 @@ alt-9 = 'workspace 9'
 alt-0 = 'workspace 0'
 alt-b = 'workspace B' # Broswer
 alt-c = 'workspace C' # Chat
+alt-m = 'workspace M' # Meeting
 alt-n = 'workspace N' # Notes
 alt-t = 'workspace T' # Terminal
 
@@ -99,6 +100,7 @@ alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 0'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
+alt-shift-m = 'move-node-to-workspace M'
 alt-shift-n = 'move-node-to-workspace N'
 alt-shift-t = 'move-node-to-workspace T'
 
